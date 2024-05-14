@@ -1,15 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import Signin from './pages/Signin';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Navigate replace to="/signup"/>
+    },
+    {
+      path: "/signup",
+      element: <Signin/>
+    }
+  ]);
 
   return (
-    <>
-    <h1 className='text-amber-400'>Hello, Yash this side</h1>
-    </>
+    <RouterProvider router={router} />
   )
 }
 
