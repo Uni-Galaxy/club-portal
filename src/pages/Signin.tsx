@@ -1,8 +1,13 @@
 import { GoogleAuthProvider, signInWithPopup, getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const Signin = () => {
+const Signin = ({setIsLogin}) => {
+
+    const router = useNavigate();
+
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -23,14 +28,13 @@ const Signin = () => {
         try {
             const result = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             console.log(result.user);
+            setIsLogin(true)
+            router("/")
+            toast.success("Accounte created Successfully!", {
+                theme: "dark"})
         } catch (error) {
             console.error(error);
         }
-    }
-    
-    const resetemail = () => {
-        sendPasswordResetEmail(auth, formData.email)
-
     }
 
     const handleGoogleLogin = async () => {
@@ -38,6 +42,8 @@ const Signin = () => {
         try {
             const result = await signInWithPopup(auth, provider);
             console.log(result.user);
+            setIsLogin(true)
+            router("/")
         } catch (error) {
             console.error(error);
         }

@@ -5,8 +5,14 @@ import { initializeApp } from "firebase/app";
   import { getAnalytics } from "firebase/analytics";
 import Signup from './pages/Signup';
 import ForgetPass from './pages/ForgetPass';
+import { useState } from 'react';
+import HomePage from './pages/HomePage';
+import Home from './pages/Home';
 
 function App() {
+
+  const [isLogin, setIsLogin] = useState(false);
+
   const firebaseConfig = {
     apiKey: "AIzaSyDdb6ULHl6_83bxI5tc1IrL27pw0I2NyXM",
     authDomain: "club-portal-a8713.firebaseapp.com",
@@ -22,11 +28,11 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Navigate replace to="/signin" />
+      element: isLogin ? <Home /> : <HomePage />
     },
     {
       path: "/signin",
-      element: <Signin />
+      element: <Signin setIsLogin={setIsLogin}/>
     },
     {
       path: "/signup",
