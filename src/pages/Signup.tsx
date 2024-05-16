@@ -1,8 +1,11 @@
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
 
 const Signup = () => {
+
+    const router = useNavigate();
 
     const [formData, setFormData] = useState({
         email: '',
@@ -24,8 +27,16 @@ const Signup = () => {
         try {
             const result = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
             console.log(result.user);
+            router("/signin")
+            toast.success("Account Created Succesfuly", {
+                theme: "dark"
+            })
+
         } catch (error) {
             console.error(error);
+            toast.error("Invalid email or password", {
+                theme: "dark"
+            })
         }
     }
 
@@ -33,9 +44,16 @@ const Signup = () => {
         const provider = new GoogleAuthProvider();
         try {
             const result = await signInWithPopup(auth, provider);
-            console.log(result.user);
+            console.log(result);
+            router("/signin")
+            toast.success("Account Created Succesfuly", {
+                theme: "dark"
+            })
         } catch (error) {
             console.error(error);
+            toast.error("Invalid email or password", {
+                theme: "dark"
+            })
         }
     }
 

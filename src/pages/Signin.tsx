@@ -28,12 +28,14 @@ const Signin = ({setIsLogin}) => {
         try {
             const result = await signInWithEmailAndPassword(auth, formData.email, formData.password);
             console.log(result.user);
-            setIsLogin(true)
-            router("/")
+            setIsLogin(true);
+            router("/");
             toast.success("Accounte created Successfully!", {
-                theme: "dark"})
+                theme: "dark"});
         } catch (error) {
             console.error(error);
+            toast.error("Invalid email or password", {
+                theme: "dark"});
         }
     }
 
@@ -42,39 +44,17 @@ const Signin = ({setIsLogin}) => {
         try {
             const result = await signInWithPopup(auth, provider);
             console.log(result.user);
-            setIsLogin(true)
-            router("/")
+            setIsLogin(true);
+            router("/");
+            toast.success("Accounte created Successfully!", {
+                theme: "dark"});
         } catch (error) {
             console.error(error);
+            toast.error("Invalid email or password", {
+                theme: "dark"});
         }
     }
         return (
-            // <div>
-            //     <h1>Sign In</h1>
-            //     <input
-            //         type="text"
-            //         className=""
-            //         name="email"
-            //         placeholder="Email"
-            //         value={formData.email}
-            //         onChange={handleChange}
-            //     />
-            //     <br />
-            //     <input
-            //         type="password"
-            //         className=""
-            //         name="password"
-            //         placeholder="Password"
-            //         value={formData.password}
-            //         onChange={handleChange}
-            //     /> <Link to={"/forgetpass"}>forget password ? </Link>
-            //     <br />
-            //     <button type="submit" onClick={handleSubmit}>Sign In</button>
-            //     <br />
-            //     Didn't have any account <Link to="/signup">Create new!</Link>
-            //     <br />
-            //     <button type="submit" onClick={handleGoogleLogin}>Login with Google</button>
-            // </div>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <img

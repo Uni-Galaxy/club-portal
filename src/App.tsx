@@ -24,7 +24,9 @@ function App() {
   };
 
   const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
+
+  getAnalytics(app);
+
   const router = createBrowserRouter([
     {
       path: "/",
