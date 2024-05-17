@@ -9,6 +9,7 @@ import { useState } from 'react';
 import HomePage from './pages/HomePage';
 import Home from './pages/Home';
 import { getDatabase, ref, onValue } from "firebase/database";
+import Error from './pages/Error';
 
 function App() {
 
@@ -52,6 +53,10 @@ function App() {
     {
       path: "/forgetpass",
       element: <ForgetPass />
+    },
+    {
+      path: "*",
+      element: <Error />
     }
   ]);
 
