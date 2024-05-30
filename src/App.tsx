@@ -3,12 +3,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Signin from './pages/Signin';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import Signup from './pages/Signup';
-import ForgetPass from './pages/ForgetPass';
 import { useState } from 'react';
 import HomePage from './pages/HomePage';
 import Home from './pages/Home';
-import { getDatabase, ref, onValue } from "firebase/database";
 import Error from './pages/Error';
 
 function App() {
@@ -27,38 +24,28 @@ function App() {
   };
 
   const app = initializeApp(firebaseConfig);
-
-  const db = getDatabase();
-  const starCountRef = ref(db);
-  onValue(starCountRef, (snapshot) => {
-    const data = snapshot.val();
-    console.log('data', data.scheduleData);
-  });
-
   getAnalytics(app);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLogin ? <Home /> : <HomePage />
+      element: isLogin ? <Home  /> : <HomePage />
     },
     {
       path: "/signin",
       element: <Signin setIsLogin={setIsLogin} />
     },
     {
-      path: "/signup",
-      element: <Signup />
-    },
-    {
-      path: "/forgetpass",
-      element: <ForgetPass />
-    },
-    {
       path: "*",
       element: <Error />
     }
   ]);
+
+  // const str = () => {
+  //   return (
+
+  //   )
+  // }
 
   return (
     <RouterProvider router={router} />

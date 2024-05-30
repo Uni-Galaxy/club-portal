@@ -1,4 +1,3 @@
-import { toast } from 'react-toastify';
 importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js");
 
@@ -20,9 +19,6 @@ messaging.onBackgroundMessage((payload) => {
         "[firebase-messaging-sw.js] Received background message ",
         payload
     );
-    toast(payload.notification.body,{
-        theme: "dark"
-    })
     const notificationTitle = payload.notification.title;
     const notificationOptions = {
         body: payload.notification.body,
