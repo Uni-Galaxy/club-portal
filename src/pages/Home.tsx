@@ -34,14 +34,8 @@ const Home = () => {
             const uid = user.uid;
             const database = getDatabase();
             const timestampsRef = ref(database, '/logs/' + uid);
-
-            var currentdate = new Date();
-            var datetime = "Last Sync: " + currentdate.getDay() + "/" + currentdate.getMonth()
-                + "/" + currentdate.getFullYear() + " @ "
-                + currentdate.getHours() + ":"
-                + currentdate.getMinutes() + ":" + currentdate.getSeconds();
             push(timestampsRef, {
-                time: datetime
+                time: Date()
             });
         }
     }, [])

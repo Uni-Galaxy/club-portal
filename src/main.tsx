@@ -5,7 +5,7 @@ import './index.css'
 import { ToastContainer, Bounce } from "react-toastify";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+  <div>
     <App />
     <ToastContainer
       position="top-right"
@@ -18,7 +18,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       draggable
       pauseOnHover
       theme="colored"
-      transition = {Bounce} 
-      />
-  </React.StrictMode>,
+      transition={Bounce}
+    />
+  </div>
 )
