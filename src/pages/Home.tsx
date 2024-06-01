@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 import { getToken, getMessaging } from "firebase/messaging";
 import { getDatabase, ref, onValue, push } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Sidebar";
 
 
 const Home = () => {
@@ -58,6 +60,7 @@ const Home = () => {
 
     return (
         <div>
+            <Navbar />
             <h1>Home [Dashbord page]</h1>
         </div>
     )
