@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
+import CoverImg from "../assets/ru_cover.jpeg";
 
 
 const HomePage = () => {
     return (
-        <div className="h-full">
+        <div className="h-full ">
             {/*Nav*/}
             <div className="w-full container mx-auto">
                 <div className="w-full flex items-center justify-between">
@@ -21,7 +22,7 @@ const HomePage = () => {
                             className="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
                             to="/signin"
                         >
-                        Log In
+                            Log In
                         </Link>
                     </div>
                 </div>
@@ -69,7 +70,7 @@ const HomePage = () => {
                 <div className="w-full xl:w-3/5 p-12 overflow-hidden">
                     <img
                         className="mx-auto w-full md:w-4/5 transform -rotate-6 transition hover:scale-105 duration-700 ease-in-out hover:rotate-6"
-                        src="macbook.svg"
+                        src={CoverImg}
                     />
                 </div>
                 {/*Footer*/}

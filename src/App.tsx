@@ -26,10 +26,18 @@ function App() {
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
 
+  const view = () =>{
+    return(
+      <>
+      
+      </>
+    )
+  }
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLogin ? <Home  /> : <HomePage />
+      element: isLogin ? <Home /> : <HomePage />
     },
     {
       path: "/signin",
@@ -38,14 +46,12 @@ function App() {
     {
       path: "*",
       element: <Error />
+    },
+    {
+      path: "/testhome",
+      element: <Home />
     }
   ]);
-
-  // const str = () => {
-  //   return (
-
-  //   )
-  // }
 
   return (
     <RouterProvider router={router} />
