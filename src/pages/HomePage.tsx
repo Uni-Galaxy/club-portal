@@ -4,7 +4,7 @@ import CoverImg from "../assets/ru_cover.jpeg";
 
 const HomePage = () => {
     return (
-        <div className="h-full ">
+        <div className="h-[100vh] w-[100vw] pt-4">
             {/*Nav*/}
             <div className="w-full container mx-auto">
                 <div className="w-full flex items-center justify-between">
@@ -19,7 +19,7 @@ const HomePage = () => {
                     </a>
                     <div className="flex w-1/2 justify-end content-center">
                         <Link
-                            className="inline-block text-blue-300 no-underline hover:text-pink-500 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out"
+                            className="bg-pink-500 inline-block text-blue-300 no-underline hover:text-pink-500 hover:bg-blue-300 hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 transform hover:scale-125 duration-300 ease-in-out rounded-xl"
                             to="/signin"
                         >
                             Log In
@@ -81,7 +81,7 @@ const HomePage = () => {
                     - Created by {' '}
                     <span
                         className="text-gray-500 no-underline hover:no-underline"
-                    > Rachit Kumar, Subham Mahapatra, Yash Lunawat
+                    > Yash Lunawat
                     </span>
                 </div>
             </div>
