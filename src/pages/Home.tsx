@@ -3,10 +3,15 @@ import { toast } from 'react-toastify';
 import { getToken, getMessaging } from "firebase/messaging";
 import { getDatabase, ref, onValue, push } from "firebase/database";
 import { getAuth } from "firebase/auth";
-import Navbar from "../components/Sidebar";
+import Header from "../components/Header";
 
+interface Props {
+    user: {
+        uid: object;
+    } | {};
+}
 
-const Home = () => {
+const Home = ({ user }: Props) => {
 
     const [datas, setData] = useState([])
 
@@ -57,9 +62,11 @@ const Home = () => {
         console.log(e)
     });
 
+
+
     return (
         <div className="h-[100vh] w-[100vw]">
-            <Navbar />
+            <Header user={user} />
             <h1>Home [Dashbord page]</h1>
         </div>
     )

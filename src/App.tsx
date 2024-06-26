@@ -11,6 +11,7 @@ import Error from './pages/Error';
 function App() {
 
   const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState({});
 
   const firebaseConfig = {
     apiKey: "AIzaSyDdb6ULHl6_83bxI5tc1IrL27pw0I2NyXM",
@@ -26,22 +27,22 @@ function App() {
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
 
-  const view = () =>{
-    return(
-      <>
+  // const view = () =>{
+  //   return(
+  //     <>
       
-      </>
-    )
-  }
+  //     </>
+  //   )
+  // }
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLogin ? <Home /> : <HomePage />
+      element: isLogin ? <Home user={user} /> : <HomePage />
     },
     {
       path: "/signin",
-      element: <Signin setIsLogin={setIsLogin} />
+      element: <Signin setIsLogin={setIsLogin} setUser={setUser}/>
     },
     {
       path: "*",
@@ -49,7 +50,7 @@ function App() {
     },
     {
       path: "/testhome",
-      element: <Home />
+      element: <Home user={user}/>
     }
   ]);
 

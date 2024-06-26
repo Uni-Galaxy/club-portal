@@ -6,9 +6,10 @@ import Logo from '../assets/Colour01.png';
 
 interface Props {
     setIsLogin: (item: boolean) => void
+    setUser: (item: object) => void
 }
 
-const Signin = ({ setIsLogin }: Props) => {
+const Signin = ({ setIsLogin, setUser }: Props) => {
 
     const router = useNavigate();
 
@@ -19,6 +20,7 @@ const Signin = ({ setIsLogin }: Props) => {
         try {
             const result = await signInWithPopup(auth, provider);
             console.log(result);
+            setUser(result);
             setIsLogin(true);
             // userUID(result.user.uid)
             router("/");
