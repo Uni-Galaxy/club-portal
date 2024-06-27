@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Logo from '../assets/Colour01.png';
+import { FaGoogle } from "react-icons/fa";
+import { FaArrowLeft } from "react-icons/fa6";
 
 interface Props {
     setIsLogin: (item: boolean) => void
@@ -19,10 +21,8 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
         const provider = new GoogleAuthProvider();
         try {
             const result = await signInWithPopup(auth, provider);
-            console.log(result);
             setUser(result);
             setIsLogin(true);
-            // userUID(result.user.uid)
             router("/");
             toast.success("Accounte created Successfully!", {
                 theme: "dark"
@@ -50,18 +50,20 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-3"
+                    className="flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mb-3 gap-2"
                     onClick={handleGoogleLogin}
                 >
+                    <FaGoogle />
                     Login with Google
                 </button>
                 <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="flex w-full items-center justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 gap-2"
                     onClick={() => {
                         router('/');
                     }}
                 >
+                    <FaArrowLeft />
                     Back to Home
                 </button>
             </div>

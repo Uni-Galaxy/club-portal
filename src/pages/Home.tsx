@@ -4,6 +4,7 @@ import { getToken, getMessaging } from "firebase/messaging";
 import { getDatabase, ref, onValue, push } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import Header from "../components/Header";
+import Sidebar from "../components/Sidebar";
 
 interface Props {
     user: {
@@ -67,7 +68,16 @@ const Home = ({ user }: Props) => {
     return (
         <div className="h-[100vh] w-[100vw]">
             <Header user={user} />
-            <h1>Home [Dashbord page]</h1>
+            <div className="md:block hidden">
+                <div className="flex">
+                    <Sidebar />
+                    <h1>Home [Dashbord page]</h1>
+                </div>
+            </div>
+            <div className="md:hidden">
+                <Sidebar />
+                <h1>Home [Dashbord page]</h1>
+            </div>
         </div>
     )
 }
