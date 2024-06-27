@@ -6,6 +6,7 @@ import { FaRegCalendar } from "react-icons/fa";
 import { MdEventAvailable } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { FaBuildingColumns } from "react-icons/fa6";
+import { ImCross } from "react-icons/im";
 import { useState } from "react";
 
 const Sidebar = () => {
@@ -20,7 +21,6 @@ const Sidebar = () => {
             setToggle(false);
         }
     })
-    console.log(toggle);
 
     return (
         <>
@@ -72,9 +72,9 @@ const Sidebar = () => {
                 </div>
             </div>
             <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden ">
-                <FiMenu onClick={changeToggle} />
+                { !toggle ? <FiMenu onClick={changeToggle} /> : <ImCross  onClick={changeToggle} />}
             </div>
-            {toggle && <div className="md:hidden w-[200px] bg-white pt-1 sticky top-14">
+            {toggle && <div className="md:hidden w-[200px] bg-white pt-1 sticky top-14 border-[1px] border-[#e1e5ea]">
                 <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
                     <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
                         navigate("/")

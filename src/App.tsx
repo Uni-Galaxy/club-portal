@@ -1,5 +1,5 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Signin from './pages/Signin';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -7,6 +7,8 @@ import { useState } from 'react';
 import HomePage from './pages/HomePage';
 import Home from './pages/Home';
 import Error from './pages/Error';
+import Header from './components/Header';
+import Sidebar from './components/Sidebar';
 
 function App() {
 
@@ -27,32 +29,54 @@ function App() {
   const app = initializeApp(firebaseConfig);
   getAnalytics(app);
 
-  // const view = () =>{
-  //   return(
-  //     <>
-      
-  //     </>
-  //   )
-  // }
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLogin ? <Home user={user} /> : <HomePage />
+      element: isLogin ? <LayoutComponent /> : <HomePage />,
+      children: [
+        {
+          path: "/",
+          element: <Home />
+        }
+      ]
     },
     {
       path: "/signin",
-      element: <Signin setIsLogin={setIsLogin} setUser={setUser}/>
+      element: <Signin setIsLogin={setIsLogin} setUser={setUser} />
     },
     {
       path: "*",
       element: <Error />
     },
-    {
-      path: "/testhome",
-      element: <Home user={user}/>
-    }
   ]);
+
+  function LayoutComponent() {
+    return (
+      <div className="h-[100vh] w-[100vw]">
+        <div className='md:block hidden'>
+          <div className="sticky top-0 overflow-hidden bg-white" >
+            <Header user={user} />
+          </div>
+          <div className="flex">
+            <div className='fixed'>
+              <Sidebar />
+            </div>
+            <div className='pl-52'>
+              <Outlet />
+            </div>
+          </div>
+        </div>
+        <div className='md:hidden'>
+          <Header user={user} />
+          <Sidebar />
+          <div>
+            <Outlet />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <RouterProvider router={router} />

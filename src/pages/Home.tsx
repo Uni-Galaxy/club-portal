@@ -1,20 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from 'react-toastify';
 import { getToken, getMessaging } from "firebase/messaging";
-import { getDatabase, ref, onValue, push } from "firebase/database";
+import { getDatabase, ref, push } from "firebase/database";
 import { getAuth } from "firebase/auth";
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
 
-interface Props {
-    user: {
-        uid: object;
-    } | {};
-}
 
-const Home = ({ user }: Props) => {
-
-    const [datas, setData] = useState([])
+const Home = () => {
 
     const messaging = getMessaging();
 
@@ -47,100 +38,13 @@ const Home = ({ user }: Props) => {
         }
     }, [])
 
-
     useEffect(() => {
         requestPermission();
-        const db = getDatabase();
-        const starCountRef = ref(db);
-
-        onValue(starCountRef, (snapshot) => {
-            const data = snapshot.val();
-            setData(data.clubsData)
-        });
     }, [])
 
-    Object.values(datas).map((e) => {
-        console.log(e)
-    });
-
-
-
     return (
-        <div className="h-[100vh] w-[100vw]">
-            <Header user={user} />
-            <div className="md:block hidden">
-                <div className="flex">
-                    <Sidebar />
-                    <h1>Home [Dashbord page]</h1>
-                </div>
-            </div>
-            <div className="md:hidden">
-                <Sidebar />
-                <h1>Home [Dashbord page]</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-                <h1>jsbdjkbjksdbjkbsk</h1>
-            </div>
+        <div className="h-full w-full">
+            
         </div>
     )
 }
