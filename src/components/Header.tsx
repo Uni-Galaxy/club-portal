@@ -1,4 +1,4 @@
-import full_Logo from "../assets/Colour01.png"
+import full_Logo from "../assets/Colour01.png";
 import small_Logo from "../assets/Colour01 copy.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
 
@@ -8,7 +8,8 @@ interface Props {
     } | {};
 }
 
-const Header = ({user}:Props) => {
+const Header = ({ user }: Props) => {
+    const data = user
     return (
         <div className="w-full h-14 flex items-center justify-between border-b-[1px] border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3">
             {/* Left content */}
@@ -20,8 +21,8 @@ const Header = ({user}:Props) => {
             </div>
             {/* Right content */}
             <div className="flex items-center border-l-[1px] border-[#e1e5ea] ">
-                <IoMdNotificationsOutline className="text-[40px] ml-2"/>
-                <img className="h-11 rounded-full ml-2" src={user.user.photoURL} alt="User Image" />
+                <IoMdNotificationsOutline className="text-[40px] ml-2" />
+                <img className="h-11 rounded-full ml-2" src={data.user.photoURL} alt="User Image" />
             </div>
         </div>
     )
