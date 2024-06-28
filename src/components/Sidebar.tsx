@@ -65,10 +65,6 @@ const Sidebar = () => {
     const changeToggle = (() => {
         setToggle(!toggle)
     })
-
-    console.log("Admin", isAdmin);
-    console.log("Club", isClub);
-
     useEffect(() => {
         const db = getDatabase();
         const dbRef = ref(db);
@@ -87,14 +83,6 @@ const Sidebar = () => {
             }
         })
     }, [])
-
-    generalNav.map((item) => {
-        console.log({
-            name: item.name,
-            icon: item.icon,
-            path: item.path
-        })
-    })
 
     return (
         <>
