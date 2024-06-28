@@ -9,6 +9,10 @@ import Home from './pages/Home';
 import Error from './pages/Error';
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import Clubs from './pages/Clubs';
+import Calendar from './pages/Calendar';
+import Events from './pages/Events';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -38,7 +42,23 @@ function App() {
         {
           path: "/",
           element: <Home />
-        }
+        },
+        {
+          path: "/clubs",
+          element: <Clubs />
+        },
+        {
+          path: "/calendar",
+          element: <Calendar />
+        },
+        {
+          path: "/events",
+          element: <Events />
+        },
+        {
+          path: "/people",
+          element: <Profile />
+        },
       ]
     },
     {
