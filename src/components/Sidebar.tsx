@@ -7,19 +7,93 @@ import { MdEventAvailable } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { FaBuildingColumns } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getDatabase, ref, get, child } from "firebase/database";
+
+const generalNav = [
+    {
+        name: "Home",
+        icon: <IoMdHome />,
+        path: "/",
+    },
+    {
+        name: "Clubs",
+        icon: <FaBuildingColumns />,
+        path: "/clubs",
+    },
+    {
+        name: "Calendar",
+        icon: <FaRegCalendar />,
+        path: "/calendar",
+    },
+    {
+        name: "Events",
+        icon: <MdEventAvailable />,
+        path: "/events",
+    },
+    {
+        name: "People",
+        icon: <IoMdPerson />,
+        path: "/people",
+    },
+];
+
+const ClubsNav = [
+    {
+        name: "Clubs",
+        icon: <IoMdHome />,
+        path: "/",
+    }
+]
+
+const AdminNav = [
+    {
+        name: "Clubs",
+        icon: <IoMdHome />,
+        path: "/",
+    }
+]
 
 const Sidebar = () => {
 
+    const [isAdmin, setIsAdmin] = useState(false);
+    const [isClub, setIsClub] = useState(false);
     const [toggle, setToggle] = useState(false);
+
     const navigate = useNavigate();
 
     const changeToggle = (() => {
-        if (toggle === false) {
-            setToggle(true);
-        } else {
-            setToggle(false);
-        }
+        setToggle(!toggle)
+    })
+
+    console.log("Admin", isAdmin);
+    console.log("Club", isClub);
+
+    useEffect(() => {
+        const db = getDatabase();
+        const dbRef = ref(db);
+        // Checking that is it a Admin id or Not
+        get(child(dbRef, `/checkIsAdmin`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                setIsAdmin(true);
+            }
+        })
+        // Checking that is it a Club id or Not
+        get(child(dbRef, `/checkIsClub`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val());
+                setIsClub(true);
+            }
+        })
+    }, [])
+
+    generalNav.map((item) => {
+        console.log({
+            name: item.name,
+            icon: item.icon,
+            path: item.path
+        })
     })
 
     return (
@@ -29,92 +103,134 @@ const Sidebar = () => {
                     <div className="p-6 border-b-[1px] border-[#e1e5ea]">
                         <p className="font-mono text-sm text-[#2b303b] font-semibold ">Welcome to Club Portal</p>
                     </div>
-                    <div >
-                        <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
-                            <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                                navigate("/")
-                            }}>
-                                <IoMdHome />
-                                <p>Home</p>
-                            </li>
-                            <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                                navigate("/")
-                            }}>
-                                <FaBuildingColumns />
-                                <p>Clubs</p>
-                            </li>
-                            <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                                navigate("/")
-                            }}>
-                                <FaRegCalendar />
-                                <p>Calender</p>
-                            </li>
-                            <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                                navigate("/")
-                            }}>
-                                <MdEventAvailable />
-                                <p>Events</p>
-                            </li>
-                            <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                                navigate("/")
-                            }}>
-                                <IoMdPerson />
-                                <p>Profile</p>
-                            </li>
-                        </ul>
-                        <div className="p-4 ">
-                            <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer">
-                                <GoSignOut />
-                                Sign Out
-                            </button>
+                    <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
+                        {generalNav.map((item) => {
+                            return (
+                                <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                    navigate(item.path)
+                                }}>
+                                    {item.icon}
+                                    <p>{item.name}</p>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                    {isClub &&
+                        <div className="p-4 border-b-[1px] border-[#e1e5ea] ">
+                            <div className="mb-4 p-2 rounded-xl bg-slate-400">
+                                <h3 className="font-mono text-lg text-[#2b303b] font-semibold pb-1">Clubs features</h3>
+                                <p>This features can only use by Clubs</p>
+                            </div>
+                            <ul className="">
+                                {ClubsNav.map((item) => {
+                                    return (
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                            navigate(item.path)
+                                        }}>
+                                            {item.icon}
+                                            <p>{item.name}</p>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
                         </div>
+                    }
+                    {isAdmin &&
+                        <div className="p-4 border-b-[1px] border-[#e1e5ea] ">
+                            <div className="mb-4 p-2 rounded-xl bg-slate-400">
+                                <h3 className="font-mono text-lg text-[#2b303b] font-semibold pb-1">Admin features</h3>
+                                <p>This features can only use by Admins</p>
+                            </div>
+                            <ul className="">
+                                {AdminNav.map((item) => {
+                                    return (
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                            navigate(item.path)
+                                        }}>
+                                            {item.icon}
+                                            <p>{item.name}</p>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    }
+                    <div className="p-4 ">
+                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer">
+                            <GoSignOut />
+                            Sign Out
+                        </button>
                     </div>
                 </div>
             </div>
-            <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden ">
-                { !toggle ? <FiMenu onClick={changeToggle} /> : <ImCross  onClick={changeToggle} />}
-            </div>
-            {toggle && <div className="md:hidden w-[200px] bg-white pt-1 sticky top-14 border-[1px] border-[#e1e5ea]">
-                <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
-                    <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                        navigate("/")
-                    }}>
-                        <IoMdHome />
-                        <p>Home</p>
-                    </li>
-                    <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                        navigate("/")
-                    }}>
-                        <FaBuildingColumns />
-                        <p>Clubs</p>
-                    </li>
-                    <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                        navigate("/")
-                    }}>
-                        <FaRegCalendar />
-                        <p>Calender</p>
-                    </li>
-                    <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                        navigate("/")
-                    }}>
-                        <MdEventAvailable />
-                        <p>Events</p>
-                    </li>
-                    <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
-                        navigate("/")
-                    }}>
-                        <IoMdPerson />
-                        <p>Profile</p>
-                    </li>
-                </ul>
-                <div className="p-4 ">
-                    <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer">
-                        <GoSignOut />
-                        Sign Out
-                    </button>
-                </div>
-            </div>}
 
+            {/* Phone Navbar */}
+
+            <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden z-50">
+                {!toggle ? <FiMenu onClick={changeToggle} /> : <ImCross onClick={changeToggle} />}
+            </div>
+            {toggle &&
+                <div className="md:hidden w-[200px] bg-white pt-1 sticky top-14 border-[1px] border-[#e1e5ea]">
+                    <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
+                        {generalNav.map((item) => {
+                            return (
+                                <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                    navigate(item.path)
+                                }}>
+                                    {item.icon}
+                                    <p>{item.name}</p>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                    {isClub &&
+                        <div className="p-4 border-b-[1px] border-[#e1e5ea] ">
+                            <div className="mb-4 p-2 rounded-xl bg-slate-400">
+                                <h3 className="font-mono text-lg text-[#2b303b] font-semibold pb-1">Clubs features</h3>
+                                <p>This features can only use by Clubs</p>
+                            </div>
+                            <ul className="">
+                                {ClubsNav.map((item) => {
+                                    return (
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                            navigate(item.path)
+                                        }}>
+                                            {item.icon}
+                                            <p>{item.name}</p>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    }
+                    {isAdmin &&
+                        <div className="p-4 border-b-[1px] border-[#e1e5ea] ">
+                            <div className="mb-4 p-2 rounded-xl bg-slate-400">
+                                <h3 className="font-mono text-lg text-[#2b303b] font-semibold pb-1">Admin features</h3>
+                                <p>This features can only use by Admins</p>
+                            </div>
+                            <ul className="">
+                                {AdminNav.map((item) => {
+                                    return (
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                            navigate(item.path)
+                                        }}>
+                                            {item.icon}
+                                            <p>{item.name}</p>
+                                        </li>
+                                    )
+                                })}
+                            </ul>
+                        </div>
+                    }
+                    <div className="p-4 ">
+                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer">
+                            <GoSignOut />
+                            Sign Out
+                        </button>
+                    </div>
+                </div>
+            }
         </>
     )
 }
