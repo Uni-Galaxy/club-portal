@@ -24,7 +24,7 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
             setUser(result);
             setIsLogin(true);
             router("/");
-            toast.success("Accounte Loged IN Successfully!", {
+            toast.success("Accounte Loged In Successfully!", {
                 theme: "dark"
             });
         } catch (error) {
