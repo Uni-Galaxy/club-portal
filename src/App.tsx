@@ -13,6 +13,7 @@ import Clubs from './pages/Clubs';
 import Calendar from './pages/Calendar';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
+import Chat from './pages/Chat';
 
 function App() {
 
@@ -50,6 +51,10 @@ function App() {
         {
           path: "/calendar",
           element: <Calendar />
+        },
+        {
+          path: "/chat",
+          element: <Chat />
         },
         {
           path: "/events",

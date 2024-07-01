@@ -27,6 +27,11 @@ const generalNav = [
         path: "/calendar",
     },
     {
+        name: "Chat",
+        icon: <MdEventAvailable />,
+        path: "/chat",
+    },
+    {
         name: "Events",
         icon: <MdEventAvailable />,
         path: "/events",
