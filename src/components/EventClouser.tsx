@@ -3,7 +3,7 @@ import { MdEventAvailable } from "react-icons/md";
 
 const EventClouser = () => {
     return (
-        <div className="flex flex-col pt-12 pb-12 border-b-[1px] border-[#e1e5ea] max-w-full gap-8">
+        <div className="flex flex-col pt-12 pb-12 border-b-[1px] border-[#e1e5ea] max-w-full gap-8" style={{ width: "calc(100vw - 207px)" }}>
             <div className="flex items-center justify-center gap-4 pr-12 pl-12">
                 <div className="flrx h-10 w-10 p-2 items-center justify-center rounded-lg border-[1px] border-[#e1e5ea]">
                     <MdEventAvailable />
@@ -41,7 +41,7 @@ const EventClouser = () => {
                             <div className="text-[#16191d] text-[16px] leading-[160%] tracking-[0.1px] font-[550] overflow-hidden flex-grow line-clamp-2">
                                 General Maths APS - PostClass
                             </div>
-                            <div className="text-[#5b6271] text-[12px] leading-[120%] tracking-[0.4px] font-[450]">
+                            <div className="text-[#5b6271] text-[12px] leading-[120%] tracking-[0.4px] font-[450] ">
                                 djhfjkhjfkhdajhfjkhfjkdhsfjksdfkjhgdshkfdskhf
                             </div>
                         </div>
