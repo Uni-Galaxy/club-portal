@@ -11,10 +11,10 @@ const EventClouser = () => {
                     <MdEventAvailable size={24} />
                 </div>
                 <div className="flex flex-col items-start gap-2  grow-[1] pr-2">
-                    <h2 className="text-base text-[#16191d] font-bold leading-3 tracking-[0.25px]">
+                    <h2 className="text-base text-[#16191d] font-bold leading-5 tracking-[0.25px]">
                         Upcoming Event
                     </h2>
-                    <p className="text-[#5b6271] leading-3 tracking-[0.4px]">
+                    <p className="text-[#5b6271] leading-4 tracking-[0.4px]">
                         See want you want to do..
                     </p>
                 </div>
