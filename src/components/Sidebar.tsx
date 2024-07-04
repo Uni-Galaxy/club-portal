@@ -183,7 +183,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
 
             {/* Phone Navbar */}
 
-            <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden z-50relative">
+            <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden z-50">
                 {!toggle ? <FiMenu onClick={changeToggle} size={24} /> : <ImCross onClick={changeToggle} />}
             </div>
             {toggle &&

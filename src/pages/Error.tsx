@@ -1,27 +1,16 @@
-import "./styles/Error.css"
 import { Link } from "react-router-dom";
+
 
 const Error = () => {
     return (
-        <section className="page_404">
-            <div className="container">
-                <div className="row">
-                    <div className="col-sm-12 ">
-                        <div className="col-sm-10 col-sm-offset-1  text-center">
-                            <div className="four_zero_four_bg">
-                                <h1 className="text-center ">404</h1>
-                            </div>
-                            <div className="contant_box_404">
-                                <h3 className="h2">Look like you're lost</h3>
-                                <p>the page you are looking for not avaible!</p>
-                                <Link to="/" className="link_404">
-                                    Go to Home
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <section className="w-screen h-screen pt-10 pb-10 flex items-center justify-center bg-[url('https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif')] bg-cover bg-center" >
+            <div className="absolute top-[15%] flex flex-col items-center justify-center">
+                <h1 className="text-5xl text-black font-bold">404</h1>
+                <p className="text-2xl text-black">This pages does not exist..</p>
             </div>
+            <Link to={"/"} className="text-blue-700 hover:text-white border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:focus:ring-blue-800 absolute bottom-[15%]">
+                Home Page
+            </Link>
         </section>
     );
 };
