@@ -2,40 +2,36 @@ import full_Logo from "../assets/Colour01.png";
 import small_Logo from "../assets/Colour01 copy.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { getToken, getMessaging } from "firebase/messaging";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from 'react-toastify';
 import { getDatabase, ref, push } from "firebase/database";
 import { getAuth } from "firebase/auth";
 
-interface Props {
-    user: {
-        uid: object;
-    } | {};
-}
 
-const Header = ({ user }: Props) => {
+const Header = () => {
     const auth = getAuth();
-    const data = user
     const messaging = getMessaging();
-
+    const [data, setData] = useState({})
+    
     const requestPermission = async () => {
         const permission = await Notification.requestPermission()
         if (permission === 'granted') {
             toast.success("Notification Enable", {
-                theme: "dark"
+                theme: "light"
             })
             await getToken(messaging, { vapidKey: 'BN0KnW-O5Ul6YYNYJbylMtVbx3DgNhGP-S08PGHne6ZHCxjY1APtrxxbSqBUnU7sDr1kUaEA3sJaQY5qhgoM9Bk' })
         } else if (permission == 'denied') {
             alert('Permission denied');
             toast.error("Notification Disable", {
-                theme: "dark",
+                theme: "light"
             })
         }
     }
-
+    
     useEffect(() => {
         const user = auth.currentUser;
         if (user) {
+            setData(user)
             const uid = user.uid;
             const database = getDatabase();
             const timestampsRef = ref(database, '/logs/' + uid);
@@ -44,11 +40,11 @@ const Header = ({ user }: Props) => {
             });
         }
     }, [])
-
+    
     useEffect(() => {
         requestPermission();
     }, [])
-
+    
     return (
         <div className="w-full h-14 flex items-center justify-between border-b-[1px] border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3">
             {/* Left content */}
@@ -61,7 +57,7 @@ const Header = ({ user }: Props) => {
             {/* Right content */}
             <div className="flex items-center border-l-[1px] border-[#e1e5ea] ">
                 <IoMdNotificationsOutline className="text-[40px] ml-2" />
-                <img className="h-11 rounded-full ml-2" src={data.user.photoURL} alt="User Image" />
+                <img className="h-11 rounded-full ml-2" src={data.photoURL} alt="User Image" />
             </div>
         </div>
     )

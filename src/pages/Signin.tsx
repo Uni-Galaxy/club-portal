@@ -8,10 +8,9 @@ import { FaArrowLeft } from "react-icons/fa6";
 
 interface Props {
     setIsLogin: (item: boolean) => void
-    setUser: (item: object) => void
 }
 
-const Signin = ({ setIsLogin, setUser }: Props) => {
+const Signin = ({ setIsLogin }: Props) => {
 
     const router = useNavigate();
 
@@ -20,19 +19,20 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
     const handleGoogleLogin = async () => {
         const provider = new GoogleAuthProvider();
         try {
-            const result = await signInWithPopup(auth, provider);
-            setUser(result);
+            await signInWithPopup(auth, provider);
+            localStorage.setItem("firebaseUser", JSON.stringify(auth));
             setIsLogin(true);
             router("/");
             toast.success("Accounte Loged In Successfully!", {
-                theme: "dark"
+                theme: "light"
             });
         } catch (error) {
             console.error(error);
             toast.error("Invalid email or password", {
-                theme: "dark"
+                theme: "light"
             });
         }
+
     }
     return (
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 h-[100vh] w-[100vw]">

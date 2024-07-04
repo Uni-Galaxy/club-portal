@@ -1,10 +1,29 @@
 import { Link } from "react-router-dom"
 import CoverImg from "../assets/ru_cover.jpeg";
+import { useEffect } from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
+interface Props {
+    setIsLogin: (item: boolean) => void
+}
 
-const HomePage = () => {
+const HomePage = ({ setIsLogin }: Props) => {
+
+    useEffect(() => {
+        const user = localStorage.getItem("firebaseUser");
+        if (user != null) {
+            const auth = getAuth()
+            if (auth != null) {
+                onAuthStateChanged(auth, () => {
+                    setIsLogin(true)
+                }
+                )
+            }
+        }
+    }, []);
+
     return (
-        <div className="h-[100vh] w-[100vw] pt-4">
+        <div className="h-[100vh] w-[100vw] p-6 md:pt-4">
             {/*Nav*/}
             <div className="w-full container mx-auto">
                 <div className="w-full flex items-center justify-between">
@@ -31,7 +50,7 @@ const HomePage = () => {
             <div className="container pt-24 md:pt-36 mx-auto flex flex-wrap flex-col md:flex-row items-center">
                 {/*Left Col*/}
                 <div className="flex flex-col w-full xl:w-2/5 justify-center lg:items-start overflow-y-hidden">
-                    <h1 className="my-4 text-3xl md:text-5xl text-white opacity-75 font-bold leading-tight text-center md:text-left">
+                    <h1 className="my-4 text-3xl md:text-5xl text-black opacity-75 font-bold leading-tight text-center md:text-left">
                         Main
                         <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-pink-500 to-purple-500">
                             Hero Message

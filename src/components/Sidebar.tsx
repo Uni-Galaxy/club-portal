@@ -4,42 +4,50 @@ import { useNavigate } from "react-router-dom";
 import { GoSignOut } from "react-icons/go";
 import { FaRegCalendar } from "react-icons/fa";
 import { MdEventAvailable } from "react-icons/md";
-import { IoMdPerson } from "react-icons/io";
+import { IoPeopleCircleOutline } from "react-icons/io5";
 import { FaBuildingColumns } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import { useEffect, useState } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
+import { VscAccount } from "react-icons/vsc";
+import { IoMdChatboxes } from "react-icons/io";
+import { getAuth, signOut } from "firebase/auth";
 
 const generalNav = [
     {
         name: "Home",
-        icon: <IoMdHome />,
+        icon: <IoMdHome size={20} />,
         path: "/",
     },
     {
         name: "Clubs",
-        icon: <FaBuildingColumns />,
+        icon: <FaBuildingColumns size={20} />,
         path: "/clubs",
     },
     {
         name: "Calendar",
-        icon: <FaRegCalendar />,
+        icon: <FaRegCalendar size={20} />,
         path: "/calendar",
     },
     {
         name: "Chat",
-        icon: <MdEventAvailable />,
+        icon: <IoMdChatboxes size={20} />,
         path: "/chat",
     },
     {
         name: "Events",
-        icon: <MdEventAvailable />,
+        icon: <MdEventAvailable size={20} />,
         path: "/events",
     },
     {
         name: "People",
-        icon: <IoMdPerson />,
+        icon: <IoPeopleCircleOutline size={20} />,
         path: "/people",
+    },
+    {
+        name: "Profile",
+        icon: <VscAccount size={20} />,
+        path: "/profile",
     },
 ];
 
@@ -47,7 +55,7 @@ const ClubsNav = [
     {
         name: "Clubs",
         icon: <IoMdHome />,
-        path: "/",
+        path: "/people",
     }
 ]
 
@@ -55,11 +63,16 @@ const AdminNav = [
     {
         name: "Clubs",
         icon: <IoMdHome />,
-        path: "/",
+        path: "/clubs",
     }
 ]
 
-const Sidebar = () => {
+
+interface Props {
+    setIsLogin: (item: boolean) => void
+}
+
+const Sidebar = ({ setIsLogin }: Props) => {
 
     const [isAdmin, setIsAdmin] = useState(false);
     const [isClub, setIsClub] = useState(false);
@@ -76,18 +89,27 @@ const Sidebar = () => {
         // Checking that is it a Admin id or Not
         get(child(dbRef, `/checkIsAdmin`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setIsAdmin(true);
             }
         })
         // Checking that is it a Club id or Not
         get(child(dbRef, `/checkIsClub`)).then((snapshot) => {
             if (snapshot.exists()) {
-                console.log(snapshot.val());
                 setIsClub(true);
             }
         })
     }, [])
+
+    const signOutUser = () => {
+        const auth = getAuth();
+        signOut(auth).then(() => {
+            localStorage.removeItem("firebaseUser");
+            setIsLogin(false)
+        }).catch((error) => {
+            console.log(error)
+        });
+
+    }
 
     return (
         <>
@@ -102,7 +124,9 @@ const Sidebar = () => {
                                 <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
                                     navigate(item.path)
                                 }}>
-                                    {item.icon}
+                                    <div className="flex items-center justify-center">
+                                        {item.icon}
+                                    </div>
                                     <p>{item.name}</p>
                                 </li>
                             )
@@ -149,7 +173,7 @@ const Sidebar = () => {
                         </div>
                     }
                     <div className="p-4 ">
-                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer">
+                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer" onClick={signOutUser}>
                             <GoSignOut />
                             Sign Out
                         </button>
@@ -159,16 +183,17 @@ const Sidebar = () => {
 
             {/* Phone Navbar */}
 
-            <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden z-50">
-                {!toggle ? <FiMenu onClick={changeToggle} /> : <ImCross onClick={changeToggle} />}
+            <div className="md:hidden flex items-center w-full h-14 justify-between border-b-[1px] bg-white border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3 sticky top-0 overflow-hidden z-50relative">
+                {!toggle ? <FiMenu onClick={changeToggle} size={24} /> : <ImCross onClick={changeToggle} />}
             </div>
             {toggle &&
-                <div className="md:hidden w-[200px] bg-white pt-1 sticky top-14 border-[1px] border-[#e1e5ea]">
+                <div className="md:hidden w-[200px] bg-white pt-1 top-28 border-[1px] border-[#e1e5ea] absolute z-10">
                     <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
                         {generalNav.map((item) => {
                             return (
                                 <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
                                     navigate(item.path)
+                                    changeToggle()
                                 }}>
                                     {item.icon}
                                     <p>{item.name}</p>
@@ -187,6 +212,7 @@ const Sidebar = () => {
                                     return (
                                         <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
                                             navigate(item.path)
+                                            changeToggle()
                                         }}>
                                             {item.icon}
                                             <p>{item.name}</p>
@@ -207,6 +233,7 @@ const Sidebar = () => {
                                     return (
                                         <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
                                             navigate(item.path)
+                                            changeToggle()
                                         }}>
                                             {item.icon}
                                             <p>{item.name}</p>
@@ -217,7 +244,7 @@ const Sidebar = () => {
                         </div>
                     }
                     <div className="p-4 ">
-                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer">
+                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer" onClick={signOutUser}>
                             <GoSignOut />
                             Sign Out
                         </button>

@@ -14,11 +14,11 @@ import Calendar from './pages/Calendar';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
+import People from './pages/People';
 
 function App() {
 
   const [isLogin, setIsLogin] = useState(false);
-  const [user, setUser] = useState({});
 
   const firebaseConfig = {
     apiKey: "AIzaSyDdb6ULHl6_83bxI5tc1IrL27pw0I2NyXM",
@@ -38,7 +38,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLogin ? <LayoutComponent /> : <HomePage />,
+      element: isLogin ? <LayoutComponent /> : <HomePage setIsLogin={setIsLogin} />,
       children: [
         {
           path: "/",
@@ -61,14 +61,18 @@ function App() {
           element: <Events />
         },
         {
-          path: "/people",
+          path: "/profile",
           element: <Profile />
+        },
+        {
+          path: "/people",
+          element: <People />
         },
       ]
     },
     {
       path: "/signin",
-      element: <Signin setIsLogin={setIsLogin} setUser={setUser} />
+      element: <Signin setIsLogin={setIsLogin} />
     },
     {
       path: "*",
@@ -81,11 +85,11 @@ function App() {
       <div className="h-[100vh] w-[100vw]">
         <div className='md:block hidden'>
           <div className="sticky top-0 overflow-hidden bg-white" >
-            <Header user={user} />
+            <Header />
           </div>
           <div className="flex">
             <div className='fixed'>
-              <Sidebar />
+              <Sidebar setIsLogin={setIsLogin} />
             </div>
             <div className='pl-52'>
               <Outlet />
@@ -93,8 +97,8 @@ function App() {
           </div>
         </div>
         <div className='md:hidden'>
-          <Header user={user} />
-          <Sidebar />
+          <Header />
+          <Sidebar setIsLogin={setIsLogin} />
           <div>
             <Outlet />
           </div>
