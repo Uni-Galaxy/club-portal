@@ -55,7 +55,7 @@ const Header = () => {
             {/* Right content */}
             <div className="flex items-center border-l-[1px] border-[#e1e5ea] ">
                 <IoMdNotificationsOutline className="text-[40px] ml-2" />
-                <img className="h-11 rounded-full ml-2" src={auth.currentUser?.photoURL} alt="User Image" />
+                {auth.currentUser?.photoURL != null &&  <img className="h-11 rounded-full ml-2" src={auth.currentUser?.photoURL} alt="User Image" />}
             </div>
         </div>
     )
