@@ -7,11 +7,11 @@ import { MdEventAvailable } from "react-icons/md";
 import { IoPeopleCircleOutline } from "react-icons/io5";
 import { FaBuildingColumns } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
-import { useEffect, useState } from "react";
-import { getDatabase, ref, get, child } from "firebase/database";
+import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { IoMdChatboxes } from "react-icons/io";
 import { getAuth, signOut } from "firebase/auth";
+import { IoCreateOutline } from "react-icons/io5";
 
 const generalNav = [
     {
@@ -54,8 +54,13 @@ const generalNav = [
 const ClubsNav = [
     {
         name: "Clubs",
-        icon: <IoMdHome />,
+        icon: <IoMdHome size={20} />,
         path: "/people",
+    },
+    {
+        name: "Create Display Event",
+        icon: <IoCreateOutline size={20} />,
+        path: "/create-display-event",
     }
 ]
 
@@ -70,12 +75,12 @@ const AdminNav = [
 
 interface Props {
     setIsLogin: (item: boolean) => void
+    isClub: boolean;
+    isAdmin: boolean;
 }
 
-const Sidebar = ({ setIsLogin }: Props) => {
+const Sidebar = ({ setIsLogin, isAdmin, isClub }: Props) => {
 
-    const [isAdmin, setIsAdmin] = useState(false);
-    const [isClub, setIsClub] = useState(false);
     const [toggle, setToggle] = useState(false);
 
     const navigate = useNavigate();
@@ -83,22 +88,6 @@ const Sidebar = ({ setIsLogin }: Props) => {
     const changeToggle = (() => {
         setToggle(!toggle)
     })
-    useEffect(() => {
-        const db = getDatabase();
-        const dbRef = ref(db);
-        // Checking that is it a Admin id or Not
-        get(child(dbRef, `/checkIsAdmin`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                setIsAdmin(true);
-            }
-        })
-        // Checking that is it a Club id or Not
-        get(child(dbRef, `/checkIsClub`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                setIsClub(true);
-            }
-        })
-    }, [])
 
     const signOutUser = () => {
         const auth = getAuth();

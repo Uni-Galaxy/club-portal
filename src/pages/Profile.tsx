@@ -4,14 +4,16 @@ const Profile = () => {
     const auth = getAuth()
     let Stream, Year
 
-    console.log(auth)
-
     if (auth.currentUser?.email != null) {
         // Stream defining
         if (auth.currentUser?.email.includes("csai")) {
             Stream = "B.Tech CSAI"
         } else {
-            Stream = "B.Des"
+            if (auth.currentUser?.email.includes(".club")) {
+                Stream = "Club Account"
+            } else {
+                Stream = "B.Tech CSE"
+            }
         }
         // Year defining
         if (auth.currentUser?.email.includes("23")) {

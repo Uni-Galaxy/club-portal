@@ -1,9 +1,9 @@
 import './App.css';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import Signin from './pages/Signin';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import Home from './pages/Home';
 import Error from './pages/Error';
@@ -15,10 +15,31 @@ import Events from './pages/Events';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
 import People from './pages/People';
+import CreateDisplayEvent from './pages/CreateDisplayEvent';
+import { getDatabase, ref, get, child } from "firebase/database";
 
 function App() {
 
   const [isLogin, setIsLogin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isClub, setIsClub] = useState(false);
+
+  useEffect(() => {
+    const db = getDatabase();
+    const dbRef = ref(db);
+    // Checking that is it a Admin id or Not
+    get(child(dbRef, `/checkIsAdmin`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setIsAdmin(true);
+      }
+    })
+    // Checking that is it a Club id or Not
+    get(child(dbRef, `/checkIsClub`)).then((snapshot) => {
+      if (snapshot.exists()) {
+        setIsClub(true);
+      }
+    })
+  }, [])
 
   const firebaseConfig = {
     apiKey: "AIzaSyDdb6ULHl6_83bxI5tc1IrL27pw0I2NyXM",
@@ -68,6 +89,10 @@ function App() {
           path: "/people",
           element: <People />
         },
+        {
+          path: "/create-display-event",
+          element: isClub ?  <CreateDisplayEvent /> : <Navigate to="/error" />
+        },
       ]
     },
     {
@@ -89,7 +114,7 @@ function App() {
           </div>
           <div className="flex">
             <div className='fixed'>
-              <Sidebar setIsLogin={setIsLogin} />
+              <Sidebar setIsLogin={setIsLogin} isAdmin={isAdmin} isClub={isClub} />
             </div>
             <div className='pl-52'>
               <Outlet />
@@ -98,7 +123,7 @@ function App() {
         </div>
         <div className='md:hidden'>
           <Header />
-          <Sidebar setIsLogin={setIsLogin} />
+          <Sidebar setIsLogin={setIsLogin} isAdmin={isAdmin} isClub={isClub} />
           <div>
             <Outlet />
           </div>

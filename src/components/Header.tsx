@@ -11,7 +11,7 @@ import { getAuth } from "firebase/auth";
 const Header = () => {
     const auth = getAuth();
     const messaging = getMessaging();
-    
+
     const requestPermission = async () => {
         const permission = await Notification.requestPermission()
         if (permission === 'granted') {
@@ -26,7 +26,7 @@ const Header = () => {
             })
         }
     }
-    
+
     useEffect(() => {
         const user = auth.currentUser;
         if (user) {
@@ -38,11 +38,11 @@ const Header = () => {
             });
         }
     }, [])
-    
+
     useEffect(() => {
         requestPermission();
     }, [])
-    
+
     return (
         <div className="w-full h-14 flex items-center justify-between border-b-[1px] border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3">
             {/* Left content */}
@@ -55,7 +55,7 @@ const Header = () => {
             {/* Right content */}
             <div className="flex items-center border-l-[1px] border-[#e1e5ea] ">
                 <IoMdNotificationsOutline className="text-[40px] ml-2" />
-                {auth.currentUser?.photoURL != null &&  <img className="h-11 rounded-full ml-2" src={auth.currentUser?.photoURL} alt="User Image" />}
+                {auth.currentUser?.photoURL != null && <img className="h-11 rounded-full ml-2" src={auth.currentUser?.photoURL} alt="User Image" />}
             </div>
         </div>
     )
