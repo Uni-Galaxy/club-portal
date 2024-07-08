@@ -86,10 +86,6 @@ function App() {
           element: <Profile />
         },
         {
-          path: "/people",
-          element: <People />
-        },
-        {
           path: "/create-display-event",
           element: isClub ?  <CreateDisplayEvent /> : <Navigate to="/error" />
         },

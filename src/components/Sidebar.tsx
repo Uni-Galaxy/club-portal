@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { GoSignOut } from "react-icons/go";
 import { FaRegCalendar } from "react-icons/fa";
 import { MdEventAvailable } from "react-icons/md";
-import { IoPeopleCircleOutline } from "react-icons/io5";
 import { FaBuildingColumns } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import { useState } from "react";
@@ -40,11 +39,6 @@ const generalNav = [
         path: "/events",
     },
     {
-        name: "People",
-        icon: <IoPeopleCircleOutline size={20} />,
-        path: "/people",
-    },
-    {
         name: "Profile",
         icon: <VscAccount size={20} />,
         path: "/profile",
@@ -55,7 +49,7 @@ const ClubsNav = [
     {
         name: "Clubs",
         icon: <IoMdHome size={20} />,
-        path: "/people",
+        path: "/",
     },
     {
         name: "Create Display Event",
