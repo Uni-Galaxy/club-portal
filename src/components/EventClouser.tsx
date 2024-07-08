@@ -17,10 +17,7 @@ interface Event {
 
 
 const EventClouser = () => {
- w
     const [events, setEvents] = useState<Event[]>([]);
-
-
 
     useEffect(() => {
         const db = getDatabase();
