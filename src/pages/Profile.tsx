@@ -25,7 +25,7 @@ const Profile = () => {
                 } else {
                     if (auth.currentUser?.email.includes("21")) {
                         Year = "4th Year"
-                    } 
+                    }
                 }
             }
         }

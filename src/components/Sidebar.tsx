@@ -121,7 +121,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                     <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
                         {generalNav.map((item) => {
                             return (
-                                <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" key={item.name} onClick={() => {
                                     navigate(item.path)
                                 }}>
                                     <div className="flex items-center justify-center">
@@ -141,7 +141,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                             <ul className="">
                                 {ClubsNav.map((item) => {
                                     return (
-                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" key={item.name} onClick={() => {
                                             navigate(item.path)
                                         }}>
                                             {item.icon}
@@ -161,7 +161,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                             <ul className="">
                                 {AdminNav.map((item) => {
                                     return (
-                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" key={item.name} onClick={() => {
                                             navigate(item.path)
                                         }}>
                                             {item.icon}
@@ -173,7 +173,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                         </div>
                     }
                     <div className="p-4 ">
-                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer" onClick={signOutUser}>
+                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer"  onClick={signOutUser}>
                             <GoSignOut />
                             Sign Out
                         </button>
@@ -191,7 +191,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                     <ul className="p-4 border-b-[1px] border-[#e1e5ea]">
                         {generalNav.map((item) => {
                             return (
-                                <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" key={item.name} onClick={() => {
                                     navigate(item.path)
                                     changeToggle()
                                 }}>
@@ -210,7 +210,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                             <ul className="">
                                 {ClubsNav.map((item) => {
                                     return (
-                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" key={item.name} onClick={() => {
                                             navigate(item.path)
                                             changeToggle()
                                         }}>
@@ -231,7 +231,7 @@ const Sidebar = ({ setIsLogin }: Props) => {
                             <ul className="">
                                 {AdminNav.map((item) => {
                                     return (
-                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" onClick={() => {
+                                        <li className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl cursor-pointer" key={item.name} onClick={() => {
                                             navigate(item.path)
                                             changeToggle()
                                         }}>
