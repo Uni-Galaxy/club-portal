@@ -1,6 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { getDatabase, ref, push } from 'firebase/database';
 import { getAuth } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 interface EventData {
     clubName: string;
@@ -52,19 +53,26 @@ const CreateDisplayEvent: React.FC = () => {
                 createdBy: uid,
                 _id: Date(),
             });
+            setCreateEventData({
+                clubName: "",
+                typeOfEvent: "Meetings",
+                mainTitle: "",
+                secondTitle: "",
+                banner: "",
+                description: "",
+                eventDate: "",
+                eventTime: "",
+                eventDuration: "",
+                venue: "",
+            });
+            toast.success("Event Created Successfully", {
+                theme: "light"
+            })
+        } else {
+            toast.error("Failed to Creat new Event", {
+                theme: "light"
+            })
         }
-        setCreateEventData({
-            clubName: "",
-            typeOfEvent: "Meetings",
-            mainTitle: "",
-            secondTitle: "",
-            banner: "",
-            description: "",
-            eventDate: "",
-            eventTime: "",
-            eventDuration: "",
-            venue: "",
-        });
     };
 
     return (
