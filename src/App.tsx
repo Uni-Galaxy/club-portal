@@ -14,7 +14,6 @@ import Calendar from './pages/Calendar';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
-import People from './pages/People';
 import CreateDisplayEvent from './pages/CreateDisplayEvent';
 import { getDatabase, ref, get, child } from "firebase/database";
 
