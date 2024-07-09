@@ -3,6 +3,9 @@ import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
+import { CiLocationOn } from "react-icons/ci";
+import { CiCalendarDate } from "react-icons/ci";
+import { CiTimer } from "react-icons/ci";
 
 interface Event {
     clubName: string;
@@ -79,14 +82,14 @@ const EventClouser = () => {
                                     <div className="text-[#5b6271] text-[12px] leading-[120%] tracking-[0.4px] font-[450] ">
                                         {e.secondTitle}
                                     </div>
-                                    <div className="text-[#454950] text-[12px] leading-[120%] tracking-[0.4px] font-[450] ">
-                                        Venue: {e.venue}
+                                    <div className="text-[#454950] text-[12px] leading-[120%] tracking-[0.4px] font-[450] flex gap-1">
+                                        <CiLocationOn /> Venue: {e.venue}
                                     </div>
-                                    <div className="text-[#454950] text-[12px] leading-[120%] tracking-[0.4px] font-[450] ">
-                                        Date: {e.eventDate}
+                                    <div className="text-[#454950] text-[12px] leading-[120%] tracking-[0.4px] font-[450] flex gap-1">
+                                        <CiCalendarDate /> Date: {e.eventDate}
                                     </div>
-                                    <div className="text-[#454950] text-[12px] leading-[120%] tracking-[0.4px] font-[450] ">
-                                        Time: {e.eventTime}
+                                    <div className="text-[#454950] text-[12px] leading-[120%] tracking-[0.4px] font-[450] flex gap-1">
+                                        <CiTimer /> Time: {e.eventTime}
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-center p-3 px-[16px]">
