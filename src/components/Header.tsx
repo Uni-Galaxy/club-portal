@@ -6,11 +6,13 @@ import { useEffect } from "react";
 import { toast } from 'react-toastify';
 import { getDatabase, ref, push } from "firebase/database";
 import { getAuth } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 
 const Header = () => {
     const auth = getAuth();
     const messaging = getMessaging();
+    const router = useNavigate();
 
     const requestPermission = async () => {
         const permission = await Notification.requestPermission()
@@ -55,7 +57,7 @@ const Header = () => {
             {/* Right content */}
             <div className="flex items-center border-l-[1px] border-[#e1e5ea] ">
                 <IoMdNotificationsOutline className="text-[40px] ml-2" />
-                {auth.currentUser?.photoURL != null && <img className="h-11 rounded-full ml-2" src={auth.currentUser?.photoURL} alt="User Image" />}
+                {auth.currentUser?.photoURL != null && <img className="h-11 rounded-full ml-2 hover:cursor-pointer" src={auth.currentUser?.photoURL} alt="User Image" onClick={() => router('/profile')} />}
             </div>
         </div>
     )
