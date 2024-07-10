@@ -23,7 +23,15 @@ const MyCalendar: React.FC = () => {
             if (snapshot.exists()) {
                 const data: MyEvent[] = [];
                 snapshot.forEach((childSnapshot) => {
-                    data.push(childSnapshot.val());
+                    const end = childSnapshot.val().end;
+                    const endDate = new Date(end.year, end.month, end.date, end.hours, end.minute);
+                    const start = childSnapshot.val().start;
+                    const startDate = new Date(start.year, start.month, start.date, start.hours, start.minute);
+                    data.push({
+                        title: childSnapshot.val().title,
+                        start: startDate,
+                        end: endDate
+                    });
                 });
                 setEvents(data);
             }
@@ -34,8 +42,6 @@ const MyCalendar: React.FC = () => {
         setView(view);
     };
 
-    console.log(events);
-
     return (
         <div className='w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)] p-4'>
             <Calendar
@@ -43,7 +49,7 @@ const MyCalendar: React.FC = () => {
                 events={events}
                 startAccessor="start"
                 endAccessor="end"
-                views={['month', 'agenda']}
+                views={['month', 'week', 'day', 'agenda']}
                 defaultView={view}
                 onView={handleSelect}
             />
