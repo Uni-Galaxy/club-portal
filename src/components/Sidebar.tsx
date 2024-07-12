@@ -55,6 +55,11 @@ const ClubsNav = [
         name: "Create Display Event",
         icon: <IoCreateOutline size={20} />,
         path: "/create-display-event",
+    },
+    {
+        name: "Create Calender Event",
+        icon: <IoCreateOutline size={20} />,
+        path: "/create-calender-event",
     }
 ]
 
