@@ -6,6 +6,7 @@ import { getDatabase, ref, get, child } from "firebase/database";
 import { CiLocationOn } from "react-icons/ci";
 import { CiCalendarDate } from "react-icons/ci";
 import { CiTimer } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 interface Event {
     clubName: string;
@@ -16,6 +17,7 @@ interface Event {
     eventDate: string;
     eventTime: string;
     _id: string;
+    key: string;
 }
 
 
@@ -29,7 +31,9 @@ const EventClouser = () => {
             if (snapshot.exists()) {
                 const fetchedEvents: Event[] = [];
                 snapshot.forEach((childSnapshot) => {
-                    fetchedEvents.push(childSnapshot.val());
+                    var obj = childSnapshot.val();
+                    obj['key'] = childSnapshot.key;
+                    fetchedEvents.push(obj);
                 });
                 setEvents(fetchedEvents);
             }
@@ -93,9 +97,9 @@ const EventClouser = () => {
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-center p-3 px-[16px]">
-                                    <div className="flex items-center justify-center w-[120px] h-[40px] min-h-[40px] p-[8px] px-[12px] rounded-[8px] bg-[#0b0c0e] text-[#fff] text-[14px] leading-[160%] tracking-[0.4px] font-[550] cursor-pointer hover:shadow-xl">
+                                    <Link to={`event/${e.key}`} className="flex items-center justify-center w-[120px] h-[40px] min-h-[40px] p-[8px] px-[12px] rounded-[8px] bg-[#0b0c0e] text-[#fff] text-[14px] leading-[160%] tracking-[0.4px] font-[550] cursor-pointer hover:shadow-xl">
                                         Join
-                                    </div>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

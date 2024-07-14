@@ -17,6 +17,7 @@ import Chat from './pages/Chat';
 import CreateDisplayEvent from './pages/CreateDisplayEvent';
 import { getDatabase, ref, get, child } from "firebase/database";
 import CreateCalenderEvent from './pages/CreateCalenderEvent';
+import Event from './pages/Event';
 
 function App() {
 
@@ -92,6 +93,10 @@ function App() {
         {
           path: "/create-Calender-event",
           element: isClub ? <CreateCalenderEvent /> : <Navigate to="/error" />
+        },
+        {
+          path: "/event/:id",
+          element: <Event />
         }
       ]
     },
