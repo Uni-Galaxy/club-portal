@@ -1,43 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { getDatabase, ref, get, child } from "firebase/database";
-
-// interface Event {
-//     clubName: string;
-//     typeOfEvent: string;
-//     mainTitle: string;
-//     secondTitle: string;
-//     venue: string;
-//     eventDate: string;
-//     eventTime: string;
-//     _id: string;
-//     key: string;
-// }
-
-// const Event = () => {
-//     const [eventData, setEventData] = useState<Event>();
-//     const eventName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-
-//     useEffect(() => {
-//         const db = getDatabase();
-//         const dbRef = ref(db);
-//         get(child(dbRef, `/event/displayEvent/${eventName}`)).then((snapshot) => {
-//             if (snapshot.exists()) {
-//                 setEventData(snapshot.val());
-//             }
-//         })
-//     }, [])
-
-//     console.log(eventData);
-
-//     return (
-//         <div>
-//             <h1>Event</h1>
-//         </div>
-//     )
-// }
-// export default Event
-
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDatabase, ref, get, child } from "firebase/database";
@@ -73,7 +33,7 @@ const Event = () => {
     }, [eventName]);
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6 w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)]">
+        <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6 w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)] ">
             {eventData ? (
                 <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
                     <img src={eventData.banner} alt="Event Banner" className="w-full h-48 object-cover rounded-md mb-4" />
