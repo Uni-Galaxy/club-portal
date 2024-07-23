@@ -3,6 +3,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
 import { FaBuildingColumns } from "react-icons/fa6";
+import img from '../assets/Colour01 copy.png'
 
 interface Club {
     clubLogo: string;
@@ -60,11 +61,14 @@ const ClubClouser = () => {
             <div className="flex gap-4 overflow-x-auto snap-[x mandatory] pr-12 pl-12 pb-3 scroll-smooth">
                 {clubs.map((e) => {
                     return (
-                        <div className="rounded-lg border bg-card text-card-foreground shadow-sm w-[800px] " data-v0-t="card">
-                            <div className="flex items-center gap-4 p-4">
+                        <div
+                            className="rounded-lg border bg-card text-card-foreground shadow-sm h-[120px] "
+                            data-v0-t="card"
+                        >
+                            <div className="flex items-center gap-4 p-4 h-full">
                                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary">
                                     <img
-                                        src="/placeholder.svg"
+                                        src={img}
                                         width="48"
                                         height="48"
                                         alt="Club Logo"
@@ -72,14 +76,14 @@ const ClubClouser = () => {
                                         style={{ aspectRatio: '48 / 48', objectFit: 'cover' }}
                                     />
                                 </div>
-                                <div className="flex-1">
+                                <div className="flex-1 w-[max-content] max-w-[220px]">
                                     <h3 className="text-lg font-semibold">{e.title}</h3>
                                     <p className="text-sm text-muted-foreground">
                                         {e.description}
                                     </p>
                                 </div>
                                 <a
-                                    className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                    className="inline-flex items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                                     href="#"
                                 >
                                     View Details
@@ -88,6 +92,7 @@ const ClubClouser = () => {
                         </div>
                     )
                 })}
+
             </div>
         </div>
     )
