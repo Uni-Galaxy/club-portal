@@ -67,7 +67,6 @@ const ClubClouser = () => {
                         />
                     )
                 })}
-
             </div>
         </div>
     )
