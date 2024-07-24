@@ -1,4 +1,3 @@
-import EventClouser from "../components/EventClouser"
 import { useEffect, useState } from "react";
 import { getDatabase, ref, get, child } from "firebase/database";
 import EventCards from "../components/EventCards";
