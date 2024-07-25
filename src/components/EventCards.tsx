@@ -12,10 +12,10 @@ interface Event {
     eventDate: string;
     eventTime: string;
     _id: string;
-    key: string;
+    value: string;
 }
 
-const EventCards = ({clubName, typeOfEvent, mainTitle, secondTitle, venue, eventDate, eventTime, _id, key}: Event) => {
+const EventCards = ({clubName, typeOfEvent, mainTitle, secondTitle, venue, eventDate, eventTime, _id, value}: Event) => {
     return (
         <div className="flex flex-col min-w-[280px] p-1 justify-center items-end rounded-2xl border border-[#e1e5ea] relative bg-[#f6f7f9] " key={_id}>
             <div className="flex flex-col w-full grow ">
@@ -48,7 +48,7 @@ const EventCards = ({clubName, typeOfEvent, mainTitle, secondTitle, venue, event
                     </div>
                 </div>
                 <div className="flex items-center justify-center p-3 px-[16px]">
-                    <Link to={`event/${key}`} className="flex items-center justify-center w-[120px] h-[40px] min-h-[40px] p-[8px] px-[12px] rounded-[8px] bg-[#0b0c0e] text-[#fff] text-[14px] leading-[160%] tracking-[0.4px] font-[550] cursor-pointer hover:shadow-xl">
+                    <Link to={`event/${value}`} className="flex items-center justify-center w-[120px] h-[40px] min-h-[40px] p-[8px] px-[12px] rounded-[8px] bg-[#0b0c0e] text-[#fff] text-[14px] leading-[160%] tracking-[0.4px] font-[550] cursor-pointer hover:shadow-xl">
                         Join
                     </Link>
                 </div>

@@ -51,7 +51,7 @@ const Events = () => {
                             eventDate={e.eventDate}
                             eventTime={e.eventTime}
                             _id={e._id}
-                            key={e.key}
+                            value={e.key}
                         />
                     )
                 })}
