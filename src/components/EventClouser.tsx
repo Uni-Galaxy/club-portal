@@ -65,13 +65,13 @@ const EventClouser = () => {
                 </div>
                 <div className="flex gap-2">
                     <div
-                        className="h-8 w-8 p-1 rounded-lg border-[1px] border-[#e1e5ea] cursor-pointer ease-linear flex items-center justify-center"
+                        className="h-8 w-8 p-1 rounded-lg border-[1px] border-[#e1e5ea] cursor-pointer ease-linear flex items-center justify-center hover:bg-[#F0F2F4]"
                         onClick={scrollLeft}
                     >
                         <IoIosArrowBack size={20} />
                     </div>
                     <div
-                        className="h-8 w-8 p-1 rounded-lg border-[1px] border-[#e1e5ea] cursor-pointer ease-linear flex items-center justify-center"
+                        className="h-8 w-8 p-1 rounded-lg border-[1px] border-[#e1e5ea] cursor-pointer ease-linear flex items-center justify-center hover:bg-[#F0F2F4]"
                         onClick={scrollRight}
                     >
                         <IoIosArrowForward size={20} />
