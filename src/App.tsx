@@ -18,6 +18,7 @@ import CreateDisplayEvent from './pages/CreateDisplayEvent';
 import { getDatabase, ref, get, child } from "firebase/database";
 import CreateCalenderEvent from './pages/CreateCalenderEvent';
 import Event from './pages/Event';
+import Club from './pages/Club';
 
 function App() {
 
@@ -97,6 +98,10 @@ function App() {
         {
           path: "/event/:id",
           element: <Event />
+        },
+        {
+          path: "/club/:name",
+          element: <Club />
         }
       ]
     },

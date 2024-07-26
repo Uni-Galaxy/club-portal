@@ -83,7 +83,7 @@ const ClubClouser = () => {
                         <ClubCards
                             description={e.description}
                             title={e.title}
-                            key={e.key}
+                            value={e.key}
                         />
                     );
                 })}
