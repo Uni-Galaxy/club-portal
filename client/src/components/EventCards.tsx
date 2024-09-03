@@ -48,7 +48,7 @@ const EventCards = ({clubName, typeOfEvent, mainTitle, secondTitle, venue, event
                     </div>
                 </div>
                 <div className="flex items-center justify-center p-3 px-[16px]">
-                    <Link to={`/event/${value}`} className="flex items-center justify-center w-[120px] h-[40px] min-h-[40px] p-[8px] px-[12px] rounded-[8px] bg-[#0b0c0e] text-[#fff] text-[14px] leading-[160%] tracking-[0.4px] font-[550] cursor-pointer hover:shadow-xl">
+                    <Link to={`/event/${value}`} className="flex items-center justify-center w-[120px] h-[40px] min-h-[40px] p-[8px] px-[12px] rounded-[8px] bg-[#0b0c0e] text-[#fff] text-[14px] leading-[160%] tracking-[0.4px] font-[550] cursor-pointer hover:shadow-xl hover:text-[#0b0c0e] hover:bg-[#fff]">
                         Join
                     </Link>
                 </div>
