@@ -1,20 +1,20 @@
 <p align="center">
-  <img src="https://cdn-icons-png.flaticon.com/512/6295/6295417.png" width="100" />
+  <img src="https://img.icons8.com/?size=512&id=55494&format=png" width="20%" alt="CLUB-PORTAL.GIT-logo">
 </p>
 <p align="center">
-    <h1 align="center">CLUB-PORTAL</h1>
+    <h1 align="center">CLUB-PORTAL.GIT</h1>
 </p>
 <p align="center">
-    <em>HTTP error 401 for prompt `slogan`</em>
+    <em><code>❯ REPLACE-ME</code></em>
 </p>
 <p align="center">
-	<img src="https://img.shields.io/github/license/Uni-Galaxy/club-portal.git?style=flat&color=0080ff" alt="license">
+	<img src="https://img.shields.io/github/license/Uni-Galaxy/club-portal.git?style=flat&logo=opensourceinitiative&logoColor=white&color=0080ff" alt="license">
 	<img src="https://img.shields.io/github/last-commit/Uni-Galaxy/club-portal.git?style=flat&logo=git&logoColor=white&color=0080ff" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/Uni-Galaxy/club-portal.git?style=flat&color=0080ff" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/Uni-Galaxy/club-portal.git?style=flat&color=0080ff" alt="repo-language-count">
-<p>
+</p>
 <p align="center">
-		<em>Developed with the software and tools below.</em>
+		<em>Built with the tools and technologies:</em>
 </p>
 <p align="center">
 	<img src="https://img.shields.io/badge/Firebase-FFCA28.svg?style=flat&logo=Firebase&logoColor=black" alt="Firebase">
@@ -22,191 +22,319 @@
 	<img src="https://img.shields.io/badge/HTML5-E34F26.svg?style=flat&logo=HTML5&logoColor=white" alt="HTML5">
 	<img src="https://img.shields.io/badge/PostCSS-DD3A0A.svg?style=flat&logo=PostCSS&logoColor=white" alt="PostCSS">
 	<img src="https://img.shields.io/badge/Autoprefixer-DD3735.svg?style=flat&logo=Autoprefixer&logoColor=white" alt="Autoprefixer">
-	<br>
+	<img src="https://img.shields.io/badge/Nodemon-76D04B.svg?style=flat&logo=Nodemon&logoColor=white" alt="Nodemon">
 	<img src="https://img.shields.io/badge/Vite-646CFF.svg?style=flat&logo=Vite&logoColor=white" alt="Vite">
+	<br>
 	<img src="https://img.shields.io/badge/React-61DAFB.svg?style=flat&logo=React&logoColor=black" alt="React">
 	<img src="https://img.shields.io/badge/ESLint-4B32C3.svg?style=flat&logo=ESLint&logoColor=white" alt="ESLint">
+	<img src="https://img.shields.io/badge/Passport-34E27A.svg?style=flat&logo=Passport&logoColor=white" alt="Passport">
 	<img src="https://img.shields.io/badge/TypeScript-3178C6.svg?style=flat&logo=TypeScript&logoColor=white" alt="TypeScript">
+	<img src="https://img.shields.io/badge/Prisma-2D3748.svg?style=flat&logo=Prisma&logoColor=white" alt="Prisma">
+	<img src="https://img.shields.io/badge/Express-000000.svg?style=flat&logo=Express&logoColor=white" alt="Express">
 	<img src="https://img.shields.io/badge/JSON-000000.svg?style=flat&logo=JSON&logoColor=white" alt="JSON">
 </p>
-<hr>
 
-## 🔗 Quick Links
+<br>
 
-> - [📍 Overview](#-overview)
-> - [📦 Features](#-features)
-> - [📂 Repository Structure](#-repository-structure)
-> - [🧩 Modules](#-modules)
-> - [🚀 Getting Started](#-getting-started)
->   - [⚙️ Installation](#️-installation)
->   - [🤖 Running club-portal](#-running-club-portal)
->   - [🧪 Tests](#-tests)
-> - [🛠 Project Roadmap](#-project-roadmap)
-> - [🤝 Contributing](#-contributing)
-> - [📄 License](#-license)
-> - [👏 Acknowledgments](#-acknowledgments)
+#####  Table of Contents
 
----
-
-## 📍 Overview
-
-HTTP error 401 for prompt `overview`
+- [ Overview](#-overview)
+- [ Features](#-features)
+- [ Repository Structure](#-repository-structure)
+- [ Modules](#-modules)
+- [ Getting Started](#-getting-started)
+    - [ Prerequisites](#-prerequisites)
+    - [ Installation](#-installation)
+    - [ Usage](#-usage)
+    - [ Tests](#-tests)
+- [ Project Roadmap](#-project-roadmap)
+- [ Contributing](#-contributing)
+- [ License](#-license)
+- [ Acknowledgments](#-acknowledgments)
 
 ---
 
-## 📦 Features
+##  Overview
 
-HTTP error 401 for prompt `features`
+<code>❯ REPLACE-ME</code>
 
 ---
 
-## 📂 Repository Structure
+##  Features
+
+<code>❯ REPLACE-ME</code>
+
+---
+
+##  Repository Structure
 
 ```sh
-└── club-portal/
+└── club-portal.git/
     ├── README.md
-    ├── index.html
-    ├── package-lock.json
-    ├── package.json
-    ├── postcss.config.js
-    ├── public
-    │   └── vite.svg
-    ├── src
-    │   ├── App.css
-    │   ├── App.tsx
-    │   ├── assets
-    │   │   └── react.svg
-    │   ├── firebase.txt
-    │   ├── index.css
-    │   ├── main.tsx
-    │   ├── output.css
-    │   ├── pages
-    │   │   ├── ForgetPass.tsx
-    │   │   ├── Home.tsx
-    │   │   ├── HomePage.tsx
-    │   │   ├── Signin.tsx
-    │   │   └── Signup.tsx
-    │   └── vite-env.d.ts
-    ├── tailwind.config.js
-    ├── tsconfig.json
-    ├── tsconfig.node.json
-    └── vite.config.ts
+    ├── client
+    │   ├── .gitignore
+    │   ├── README.md
+    │   ├── index.html
+    │   ├── package-lock.json
+    │   ├── package.json
+    │   ├── postcss.config.js
+    │   ├── public
+    │   │   ├── Colour01 copy.png
+    │   │   └── firebase-messaging-sw.js
+    │   ├── src
+    │   │   ├── App.css
+    │   │   ├── App.tsx
+    │   │   ├── assets
+    │   │   │   ├── Colour01 copy.png
+    │   │   │   ├── Colour01.png
+    │   │   │   └── ru_cover.jpeg
+    │   │   ├── components
+    │   │   │   ├── ClubCards.tsx
+    │   │   │   ├── ClubClouser.tsx
+    │   │   │   ├── EventCards.tsx
+    │   │   │   ├── EventClouser.tsx
+    │   │   │   ├── Header.tsx
+    │   │   │   └── Sidebar.tsx
+    │   │   ├── firebase.txt
+    │   │   ├── index.css
+    │   │   ├── main.tsx
+    │   │   ├── output.css
+    │   │   ├── pages
+    │   │   │   ├── Calendar.tsx
+    │   │   │   ├── Chat.tsx
+    │   │   │   ├── Club.tsx
+    │   │   │   ├── Clubs.tsx
+    │   │   │   ├── CreateCalenderEvent.tsx
+    │   │   │   ├── CreateDisplayEvent.tsx
+    │   │   │   ├── Error.tsx
+    │   │   │   ├── Event.tsx
+    │   │   │   ├── Events.tsx
+    │   │   │   ├── Home.tsx
+    │   │   │   ├── HomePage.tsx
+    │   │   │   ├── People.tsx
+    │   │   │   ├── Profile.tsx
+    │   │   │   └── Signin.tsx
+    │   │   └── vite-env.d.ts
+    │   ├── tailwind.config.js
+    │   ├── tsconfig.json
+    │   ├── tsconfig.node.json
+    │   └── vite.config.ts
+    └── server
+        ├── .gitignore
+        ├── config
+        │   └── passportConfig.js
+        ├── controllers
+        │   ├── clubs.js
+        │   ├── googleAuthController.js
+        │   └── passport.js
+        ├── index.js
+        ├── middleware
+        │   └── authMiddleware.js
+        ├── package-lock.json
+        ├── package.json
+        ├── prisma
+        │   └── schema.prisma
+        └── routes
+            ├── clubs.js
+            ├── events.js
+            └── googleAuth.js
 ```
 
 ---
 
-## 🧩 Modules
+##  Modules
 
-<details closed><summary>.</summary>
+<details closed><summary>client</summary>
 
-| File                                                                                               | Summary                                        |
-| ---                                                                                                | ---                                            |
-| [tsconfig.json](https://github.com/Uni-Galaxy/club-portal.git/blob/master/tsconfig.json)           | HTTP error 401 for prompt `tsconfig.json`      |
-| [index.html](https://github.com/Uni-Galaxy/club-portal.git/blob/master/index.html)                 | HTTP error 401 for prompt `index.html`         |
-| [postcss.config.js](https://github.com/Uni-Galaxy/club-portal.git/blob/master/postcss.config.js)   | HTTP error 401 for prompt `postcss.config.js`  |
-| [vite.config.ts](https://github.com/Uni-Galaxy/club-portal.git/blob/master/vite.config.ts)         | HTTP error 401 for prompt `vite.config.ts`     |
-| [package.json](https://github.com/Uni-Galaxy/club-portal.git/blob/master/package.json)             | HTTP error 401 for prompt `package.json`       |
-| [tsconfig.node.json](https://github.com/Uni-Galaxy/club-portal.git/blob/master/tsconfig.node.json) | HTTP error 401 for prompt `tsconfig.node.json` |
-| [tailwind.config.js](https://github.com/Uni-Galaxy/club-portal.git/blob/master/tailwind.config.js) | HTTP error 401 for prompt `tailwind.config.js` |
-| [package-lock.json](https://github.com/Uni-Galaxy/club-portal.git/blob/master/package-lock.json)   | HTTP error 401 for prompt `package-lock.json`  |
+| File | Summary |
+| --- | --- |
+| [tsconfig.json](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/tsconfig.json) | <code>❯ REPLACE-ME</code> |
+| [index.html](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/index.html) | <code>❯ REPLACE-ME</code> |
+| [postcss.config.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/postcss.config.js) | <code>❯ REPLACE-ME</code> |
+| [vite.config.ts](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/vite.config.ts) | <code>❯ REPLACE-ME</code> |
+| [package.json](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/package.json) | <code>❯ REPLACE-ME</code> |
+| [tsconfig.node.json](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/tsconfig.node.json) | <code>❯ REPLACE-ME</code> |
+| [tailwind.config.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/tailwind.config.js) | <code>❯ REPLACE-ME</code> |
+| [package-lock.json](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/package-lock.json) | <code>❯ REPLACE-ME</code> |
 
 </details>
 
-<details closed><summary>src</summary>
+<details closed><summary>client.public</summary>
 
-| File                                                                                         | Summary                                       |
-| ---                                                                                          | ---                                           |
-| [firebase.txt](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/firebase.txt)   | HTTP error 401 for prompt `src/firebase.txt`  |
-| [output.css](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/output.css)       | HTTP error 401 for prompt `src/output.css`    |
-| [main.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/main.tsx)           | HTTP error 401 for prompt `src/main.tsx`      |
-| [vite-env.d.ts](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/vite-env.d.ts) | HTTP error 401 for prompt `src/vite-env.d.ts` |
-| [App.css](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/App.css)             | HTTP error 401 for prompt `src/App.css`       |
-| [App.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/App.tsx)             | HTTP error 401 for prompt `src/App.tsx`       |
-| [index.css](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/index.css)         | HTTP error 401 for prompt `src/index.css`     |
+| File | Summary |
+| --- | --- |
+| [firebase-messaging-sw.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/public/firebase-messaging-sw.js) | <code>❯ REPLACE-ME</code> |
 
 </details>
 
-<details closed><summary>src.pages</summary>
+<details closed><summary>client.src</summary>
 
-| File                                                                                                 | Summary                                              |
-| ---                                                                                                  | ---                                                  |
-| [Signin.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/pages/Signin.tsx)         | HTTP error 401 for prompt `src/pages/Signin.tsx`     |
-| [Signup.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/pages/Signup.tsx)         | HTTP error 401 for prompt `src/pages/Signup.tsx`     |
-| [ForgetPass.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/pages/ForgetPass.tsx) | HTTP error 401 for prompt `src/pages/ForgetPass.tsx` |
-| [HomePage.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/pages/HomePage.tsx)     | HTTP error 401 for prompt `src/pages/HomePage.tsx`   |
-| [Home.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/master/src/pages/Home.tsx)             | HTTP error 401 for prompt `src/pages/Home.tsx`       |
+| File | Summary |
+| --- | --- |
+| [firebase.txt](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/firebase.txt) | <code>❯ REPLACE-ME</code> |
+| [output.css](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/output.css) | <code>❯ REPLACE-ME</code> |
+| [main.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/main.tsx) | <code>❯ REPLACE-ME</code> |
+| [vite-env.d.ts](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/vite-env.d.ts) | <code>❯ REPLACE-ME</code> |
+| [App.css](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/App.css) | <code>❯ REPLACE-ME</code> |
+| [App.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/App.tsx) | <code>❯ REPLACE-ME</code> |
+| [index.css](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/index.css) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>client.src.pages</summary>
+
+| File | Summary |
+| --- | --- |
+| [Clubs.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Clubs.tsx) | <code>❯ REPLACE-ME</code> |
+| [Events.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Events.tsx) | <code>❯ REPLACE-ME</code> |
+| [Signin.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Signin.tsx) | <code>❯ REPLACE-ME</code> |
+| [Error.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Error.tsx) | <code>❯ REPLACE-ME</code> |
+| [Club.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Club.tsx) | <code>❯ REPLACE-ME</code> |
+| [Profile.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Profile.tsx) | <code>❯ REPLACE-ME</code> |
+| [People.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/People.tsx) | <code>❯ REPLACE-ME</code> |
+| [Event.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Event.tsx) | <code>❯ REPLACE-ME</code> |
+| [CreateDisplayEvent.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/CreateDisplayEvent.tsx) | <code>❯ REPLACE-ME</code> |
+| [Calendar.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Calendar.tsx) | <code>❯ REPLACE-ME</code> |
+| [CreateCalenderEvent.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/CreateCalenderEvent.tsx) | <code>❯ REPLACE-ME</code> |
+| [Chat.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Chat.tsx) | <code>❯ REPLACE-ME</code> |
+| [HomePage.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/HomePage.tsx) | <code>❯ REPLACE-ME</code> |
+| [Home.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/pages/Home.tsx) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>client.src.components</summary>
+
+| File | Summary |
+| --- | --- |
+| [ClubClouser.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/components/ClubClouser.tsx) | <code>❯ REPLACE-ME</code> |
+| [Header.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/components/Header.tsx) | <code>❯ REPLACE-ME</code> |
+| [EventClouser.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/components/EventClouser.tsx) | <code>❯ REPLACE-ME</code> |
+| [ClubCards.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/components/ClubCards.tsx) | <code>❯ REPLACE-ME</code> |
+| [Sidebar.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/components/Sidebar.tsx) | <code>❯ REPLACE-ME</code> |
+| [EventCards.tsx](https://github.com/Uni-Galaxy/club-portal.git/blob/main/client/src/components/EventCards.tsx) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>server</summary>
+
+| File | Summary |
+| --- | --- |
+| [package.json](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/package.json) | <code>❯ REPLACE-ME</code> |
+| [index.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/index.js) | <code>❯ REPLACE-ME</code> |
+| [package-lock.json](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/package-lock.json) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>server.middleware</summary>
+
+| File | Summary |
+| --- | --- |
+| [authMiddleware.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/middleware/authMiddleware.js) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>server.routes</summary>
+
+| File | Summary |
+| --- | --- |
+| [googleAuth.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/routes/googleAuth.js) | <code>❯ REPLACE-ME</code> |
+| [clubs.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/routes/clubs.js) | <code>❯ REPLACE-ME</code> |
+| [events.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/routes/events.js) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>server.config</summary>
+
+| File | Summary |
+| --- | --- |
+| [passportConfig.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/config/passportConfig.js) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>server.controllers</summary>
+
+| File | Summary |
+| --- | --- |
+| [passport.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/controllers/passport.js) | <code>❯ REPLACE-ME</code> |
+| [clubs.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/controllers/clubs.js) | <code>❯ REPLACE-ME</code> |
+| [googleAuthController.js](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/controllers/googleAuthController.js) | <code>❯ REPLACE-ME</code> |
+
+</details>
+
+<details closed><summary>server.prisma</summary>
+
+| File | Summary |
+| --- | --- |
+| [schema.prisma](https://github.com/Uni-Galaxy/club-portal.git/blob/main/server/prisma/schema.prisma) | <code>❯ REPLACE-ME</code> |
 
 </details>
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
-***Requirements***
+###  Prerequisites
 
-Ensure you have the following dependencies installed on your system:
+**TypeScript**: `version x.y.z`
 
-* **TypeScript**: `version x.y.z`
+###  Installation
 
-### ⚙️ Installation
+Build the project from source:
 
-1. Clone the club-portal repository:
-
+1. Clone the club-portal.git repository:
 ```sh
-git clone https://github.com/Uni-Galaxy/club-portal.git
+❯ git clone https://github.com/Uni-Galaxy/club-portal.git
 ```
 
-2. Change to the project directory:
-
+2. Navigate to the project directory:
 ```sh
-cd club-portal
+❯ cd club-portal.git
 ```
 
-3. Install the dependencies:
-
+3. Install the required dependencies:
 ```sh
-npm install
+❯ npm install
 ```
 
-### 🤖 Running club-portal
+###  Usage
 
-Use the following command to run club-portal:
+To run the project, execute the following command:
 
 ```sh
-npm run build && node dist/main.js
+❯ npm run build && node dist/main.js
 ```
 
-### 🧪 Tests
+###  Tests
 
-To execute tests, run:
+Execute the test suite using the following command:
 
 ```sh
-npm test
+❯ npm test
 ```
 
 ---
 
-## 🛠 Project Roadmap
+##  Project Roadmap
 
-- [X] `► INSERT-TASK-1`
-- [ ] `► INSERT-TASK-2`
-- [ ] `► ...`
+- [X] **`Task 1`**: <strike>Implement feature one.</strike>
+- [ ] **`Task 2`**: Implement feature two.
+- [ ] **`Task 3`**: Implement feature three.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Here are several ways you can contribute:
 
+- **[Report Issues](https://github.com/Uni-Galaxy/club-portal.git/issues)**: Submit bugs found or log feature requests for the `club-portal.git` project.
 - **[Submit Pull Requests](https://github.com/Uni-Galaxy/club-portal.git/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
 - **[Join the Discussions](https://github.com/Uni-Galaxy/club-portal.git/discussions)**: Share your insights, provide feedback, or ask questions.
-- **[Report Issues](https://github.com/Uni-Galaxy/club-portal.git/issues)**: Submit bugs found or log feature requests for Club-portal.
 
 <details closed>
-    <summary>Contributing Guidelines</summary>
+<summary>Contributing Guidelines</summary>
 
-1. **Fork the Repository**: Start by forking the project repository to your GitHub account.
-2. **Clone Locally**: Clone the forked repository to your local machine using a Git client.
+1. **Fork the Repository**: Start by forking the project repository to your github account.
+2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
    ```sh
    git clone https://github.com/Uni-Galaxy/club-portal.git
    ```
@@ -219,28 +347,34 @@ Contributions are welcome! Here are several ways you can contribute:
    ```sh
    git commit -m 'Implemented new feature x.'
    ```
-6. **Push to GitHub**: Push the changes to your forked repository.
+6. **Push to github**: Push the changes to your forked repository.
    ```sh
    git push origin new-feature-x
    ```
 7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
+8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
+</details>
 
-Once your PR is reviewed and approved, it will be merged into the main branch.
-
+<details closed>
+<summary>Contributor Graph</summary>
+<br>
+<p align="left">
+   <a href="https://github.com{/Uni-Galaxy/club-portal.git/}graphs/contributors">
+      <img src="https://contrib.rocks/image?repo=Uni-Galaxy/club-portal.git">
+   </a>
+</p>
 </details>
 
 ---
 
-## 📄 License
+##  License
 
 This project is protected under the [SELECT-A-LICENSE](https://choosealicense.com/licenses) License. For more details, refer to the [LICENSE](https://choosealicense.com/licenses/) file.
 
 ---
 
-## 👏 Acknowledgments
+##  Acknowledgments
 
 - List any resources, contributors, inspiration, etc. here.
-
-[**Return**](#-quick-links)
 
 ---
