@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "migrate": "npx prisma generate",
+    "updatedb": "npx prisma migrate dev --name init"
   },
   "keywords": [],
   "author": "",

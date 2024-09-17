@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,12 +8,11 @@ datasource db {
 }
 
 model User {
-  
   google_id           String   @id @unique
   email               String   @unique
   first_name          String
   last_name           String
-  profile_picture_url String? 
+  profile_picture_url String?
   role                Role     @default(USER)
   account_created_at  DateTime @default(now())
   lastlogin_at        DateTime @default(now()) @updatedAt
@@ -28,3 +24,37 @@ enum Role {
   ADMIN
 }
 
+model Club {
+  club_id             Int      @id @default(autoincrement())
+  name                String
+  description         String?
+  logo_url            String?
+  club_email          String
+  president           String
+  president_email     String
+  president_phone     String
+  membership_form_url String?
+  accepting_members   Boolean  @default(true)
+  website_url         String?
+  created_at          DateTime @default(now())
+  updated_at          DateTime @default(now()) @updatedAt
+  events              Event[]
+}
+
+model Event {
+  id             String   @id @default(cuid()) // Unique identifier
+  banner         String
+  clubName       String
+  description    String
+  eventDate      String
+  eventDuration  String
+  eventTime      String
+  mainTitle      String
+  secondTitle    String
+  typeOfEvent    String
+  venue          String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  club           Club?   @relation(fields: [clubId], references: [club_id])
+  clubId         Int?
+}
