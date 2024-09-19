@@ -2,8 +2,8 @@ import { MdEventAvailable } from "react-icons/md";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { useEffect, useState, useRef } from "react";
-import { getDatabase, ref, get, child } from "firebase/database";
 import EventCards from "./EventCards";
+
 
 interface Event {
     clubName: string;
@@ -13,29 +13,45 @@ interface Event {
     venue: string;
     eventDate: string;
     eventTime: string;
-    _id: string;
-    key: string;
+    id: string;
 }
+
+// id             String   @id @default(cuid()) // Unique identifier
+//   banner         String
+//   clubName       String
+//   description    String
+//   eventDate      String
+//   eventDuration  String
+//   eventTime      String
+//   mainTitle      String
+//   secondTitle    String
+//   typeOfEvent    String
+//   venue          String
+//   createdAt      DateTime @default(now())
+//   updatedAt      DateTime @updatedAt
+//   club           Club?   @relation(fields: [clubId], references: [club_id])
+//   clubId         Int?
 
 const EventClouser = () => {
     const [events, setEvents] = useState<Event[]>([]);
     const scrollContainerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const db = getDatabase();
-        const dbRef = ref(db);
-        get(child(dbRef, `/event/displayEvent`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                const fetchedEvents: Event[] = [];
-                snapshot.forEach((childSnapshot) => {
-                    var obj = childSnapshot.val();
-                    obj['key'] = childSnapshot.key;
-                    fetchedEvents.push(obj);
-                });
-                setEvents(fetchedEvents);
+        const data = async () => {
+            try {
+                const url = `${import.meta.env.VITE_API_URL}/events`
+                const response = await fetch(url);
+                const data = await response.json();
+                setEvents(data)
+
+            } catch (err) {
+                console.log(err);
             }
-        })
+        }
+
+        data();
     }, []);
+
 
     const scrollLeft = () => {
         if (scrollContainerRef.current) {
@@ -85,6 +101,7 @@ const EventClouser = () => {
                 {events.map((e) => {
                     return (
                         <EventCards
+                            key={e.id}
                             clubName={e.clubName}
                             typeOfEvent={e.typeOfEvent}
                             mainTitle={e.mainTitle}
@@ -92,8 +109,8 @@ const EventClouser = () => {
                             venue={e.venue}
                             eventDate={e.eventDate}
                             eventTime={e.eventTime}
-                            _id={e._id}
-                            value={e.key}
+                            _id={e.id}
+                            value={e.id}
                         />
                     );
                 })}

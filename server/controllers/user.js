@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export const allUser = async (req, res) => {
     try {
         const users = await prisma.user.findMany();
-        res.json(users);
+        res.status(200).json(users);
     } catch (error) {
         console.error("Error fetching users:", error);
         res.status(500).json({ error: "An error occurred while fetching the users." });

@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export const allClubs = async (req, res) => {
     try {
         const clubs = await prisma.club.findMany();
-        res.json(clubs);
+        res.status(200).json(clubs);
     } catch (error) {
         console.error("Error fetching clubs:", error);
         res.status(500).json({ error: "An error occurred while fetching the clubs." });

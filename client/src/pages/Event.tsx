@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getDatabase, ref, get, child } from "firebase/database";
 
 interface Event {
     clubName: string;
@@ -23,14 +22,19 @@ const Event = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const db = getDatabase();
-        const dbRef = ref(db);
-        get(child(dbRef, `/event/displayEvent/${eventName}`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                setEventData(snapshot.val());
+        const data = async () => {
+            try {
+                const url = `${import.meta.env.VITE_API_URL}/events/${eventName}`
+                const response = await fetch(url);
+                const data = await response.json();
+                setEventData(data)
+
+            } catch (err) {
+                console.log(err);
             }
-        });
-    }, [eventName]);
+        }
+        data();
+    }, [eventName])
 
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6 w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)] ">

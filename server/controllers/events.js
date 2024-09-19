@@ -6,7 +6,7 @@ const prisma = new PrismaClient();
 export const allEvents = async (req, res) => {
     try {
         const events = await prisma.event.findMany();
-        res.json(events);
+        res.status(200).json(events);
     } catch (error) {
         console.error("Error fetching events:", error);
         res.status(500).json({ error: "An error occurred while fetching the events." });
@@ -20,7 +20,7 @@ export const getEventById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        if (isNaN(id)) {
+        if (!id) {
             return res.status(400).json({ error: "Invalid Event ID" });
         }
 

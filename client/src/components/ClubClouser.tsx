@@ -81,6 +81,7 @@ const ClubClouser = () => {
                 {clubs.map((e) => {
                     return (
                         <ClubCards
+                            key={e.key}
                             description={e.description}
                             title={e.title}
                             value={e.key}
