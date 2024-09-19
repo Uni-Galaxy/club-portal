@@ -8,6 +8,7 @@ import clubsRouters from "./routes/clubs.js";
 import authenticateJWT from "./middleware/authMiddleware.js";
 import "./config/passportConfig.js";
 import eventRouters from "./routes/events.js";
+import userRouters from "./routes/user.js";
 
 dotenv.config();
 
@@ -24,19 +25,11 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
-// Google Auth routes (JWT Token generation after Google sign-in)
+// Routes
 app.use("/auth", googleAuthRouter);
-
-// Protected route using JWT authentication middleware
-app.get("/protected", authenticateJWT, (req, res) => {
-    res.send(`Welcome ${req.user.name}, this is a protected route.`);
-});
-
-// Clubs Data routes
 app.use("/clubs", clubsRouters);
-
-//Events Data routes
-app.use("/events", eventRouters)
+app.use("/events", eventRouters);
+app.use("/users", userRouters)
 
 // Start server
 const PORT = process.env.PORT || 5000;
