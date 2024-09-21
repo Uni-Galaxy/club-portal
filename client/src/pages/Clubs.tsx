@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react";
-import { getDatabase, ref, get, child } from "firebase/database";
 import ClubCards from "../components/ClubCards";
 
 interface Club {
-    clubLogo: string;
+    logo_url: string;
+    name: string;
     description: string;
-    title: string;
     president: string;
-    key: string;
 }
 
 const Clubs = () => {
     const [clubs, setCluubs] = useState<Club[]>([]);
 
     useEffect(() => {
-        const db = getDatabase();
-        const dbRef = ref(db);
-        get(child(dbRef, `/clubsData`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                const fetchedClubs: Club[] = [];
-                snapshot.forEach((childSnapshot) => {
-                    var obj = childSnapshot.val();
-                    obj['key'] = childSnapshot.key;
-                    fetchedClubs.push(obj);
-                });
-                setCluubs(fetchedClubs);
+        const clubData = async () => {
+            try {
+                const url = `${import.meta.env.VITE_API_URL}/clubs`
+                const response = await fetch(url);
+                const data = await response.json();
+                setCluubs(data);
+
+            } catch (err) {
+                console.log(err);
             }
-        })
+        }
+
+        clubData()
     }, [])
 
 
@@ -40,8 +38,8 @@ const Clubs = () => {
                     return (
                         <ClubCards
                             description={e.description}
-                            title={e.title}
-                            value={e.key}
+                            title={e.name}
+                            value={e.name}
                         />
                     )
                 })}

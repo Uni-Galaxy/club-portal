@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getDatabase, ref, get, child } from "firebase/database";
 import EventCards from "../components/EventCards";
 
 interface Event {
@@ -10,28 +9,27 @@ interface Event {
     venue: string;
     eventDate: string;
     eventTime: string;
-    _id: string;
-    key: string;
+    id: string;
 }
 
 const Events = () => {
     const [events, setEvents] = useState<Event[]>([]);
 
     useEffect(() => {
-        const db = getDatabase();
-        const dbRef = ref(db);
-        get(child(dbRef, `/event/displayEvent`)).then((snapshot) => {
-            if (snapshot.exists()) {
-                const fetchedEvents: Event[] = [];
-                snapshot.forEach((childSnapshot) => {
-                    var obj = childSnapshot.val();
-                    obj['key'] = childSnapshot.key;
-                    fetchedEvents.push(obj);
-                });
-                setEvents(fetchedEvents);
+        const data = async () => {
+            try {
+                const url = `${import.meta.env.VITE_API_URL}/events`
+                const response = await fetch(url);
+                const data = await response.json();
+                setEvents(data)
+
+            } catch (err) {
+                console.log(err);
             }
-        })
-    }, [])
+        }
+
+        data();
+    }, []);
 
 
     return (
@@ -50,8 +48,8 @@ const Events = () => {
                             venue={e.venue}
                             eventDate={e.eventDate}
                             eventTime={e.eventTime}
-                            _id={e._id}
-                            value={e.key}
+                            _id={e.id}
+                            value={e.id}
                         />
                     )
                 })}

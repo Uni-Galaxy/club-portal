@@ -40,13 +40,13 @@ model Club {
   created_at          DateTime @default(now())
   updated_at          DateTime @default(now()) @updatedAt
   events              Event[]
-  club_account_id     String   @unique // Links to User google_id
-  clubAccount         User     @relation(fields: [club_account_id], references: [google_id], name: "UserClubRelation") // Correct relation to User model
+  club_account_id     String   @unique 
+  clubAccount         User     @relation(fields: [club_account_id], references: [google_id], name: "UserClubRelation") 
 }
 
 
 model Event {
-  id             String   @id @default(cuid()) // Unique identifier
+  id             String   @id @default(cuid()) 
   banner         String
   clubName       String
   description    String
