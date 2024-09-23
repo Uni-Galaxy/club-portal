@@ -40,7 +40,7 @@ const Event = () => {
         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6 w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)] ">
             {eventData ? (
                 <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                    <img src={eventData.banner} alt="Event Banner" className="w-full h-48 object-cover rounded-md mb-4" />
+                    {/* <img src={eventData.banner} alt="Event Banner" className="w-full h-48 object-cover rounded-md mb-4" /> */}
                     <h1 className="text-2xl font-bold mb-4">{eventData.mainTitle}</h1>
                     <h2 className="text-xl text-gray-600 mb-6">{eventData.secondTitle}</h2>
                     <p className="text-lg mb-2"><strong>Club:</strong> {eventData.clubName}</p>

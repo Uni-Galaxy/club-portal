@@ -5,7 +5,10 @@ import { googleAuthCallbackHandler } from "../controllers/googleAuthController.j
 const router = Router();
 
 router.get("/google", passport.authenticate("google", {
-    scope: ["profile", "email"]
+    scope: ["profile", "email"],
+    successRedirect: '/',
+    failureRedirect: '/login'
+
 }));
 
 router.get("/google/callback", passport.authenticate("google", { session: false }), googleAuthCallbackHandler);

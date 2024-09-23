@@ -38,3 +38,20 @@ export const getUserById = async (req, res) => {
         await prisma.$disconnect();
     }
 };
+
+export const checkStatus = (req, res) => {
+    const token = req.headers['authorization'];
+    console.log(token);
+
+    if (!token) {
+        return res.status(401).json({ message: 'No token provided.' });
+    }
+
+    try {
+        console.log(process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        return res.status(200).json({ message: 'Token is valid', decoded });
+    } catch (err) {
+        return res.status(401).json({ message: 'Invalid token.' });
+    }
+};
