@@ -70,7 +70,7 @@ const Club = () => {
         <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6 w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)] ">
             {clubData ? (
                 <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-                    <img src={clubData.logo_url} alt="Event Banner" className="w-full h-40 w-40 object-cover rounded-md mb-4" />
+                    <img src={clubData.logo_url} alt="Event Banner" className="w-full h-40 object-cover rounded-md mb-4" />
                     <h1 className="text-2xl font-bold mb-4">{clubData.name}</h1>
                     <p className="text-lg mb-4"><strong>Description:</strong> {clubData.description}</p>
                     <p className="text-lg mb-2"><strong>President of Club:</strong> {clubData.president}</p>
