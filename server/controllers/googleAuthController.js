@@ -103,7 +103,7 @@ export const googleAuthCallbackHandler = async (req, res) => {
         const token = jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: "1y" });
 
         // Redirect user to frontend with the token
-        const frontendRedirectUrl = `http://localhost:5173/signin?token=${token}`;
+        const frontendRedirectUrl = `https://club.yashlunawat.com/signin?token=${token}`;
         res.redirect(frontendRedirectUrl);
 
     } catch (err) {

@@ -8,7 +8,7 @@ import { FaBuildingColumns } from "react-icons/fa6";
 import { ImCross } from "react-icons/im";
 import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
-import { IoMdChatboxes } from "react-icons/io";
+// import { IoMdChatboxes } from "react-icons/io";
 import { getAuth, signOut } from "firebase/auth";
 import { IoCreateOutline } from "react-icons/io5";
 
@@ -28,11 +28,11 @@ const generalNav = [
         icon: <FaRegCalendar size={20} />,
         path: "/calendar",
     },
-    {
-        name: "Chat",
-        icon: <IoMdChatboxes size={20} />,
-        path: "/chat",
-    },
+    // {
+    //     name: "Chat",
+    //     icon: <IoMdChatboxes size={20} />,
+    //     path: "/chat",
+    // },
     {
         name: "Events",
         icon: <MdEventAvailable size={20} />,

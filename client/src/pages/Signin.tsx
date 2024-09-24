@@ -50,7 +50,7 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
     const handleGoogleLogin = async () => {
         try {
             // Redirect to the backend Google Auth route
-            window.location.href = `http://localhost:3001/auth/google`;
+            window.location.href = `https://club-portal.onrender.com/auth/google`;
         } catch (error) {
             console.error(error);
             toast.error("Google login failed", {
