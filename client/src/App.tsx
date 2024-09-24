@@ -24,6 +24,8 @@ import Club from './pages/Club';
 function App() {
 
   const [isLogin, setIsLogin] = useState(false);
+  const [user, setUser] = useState('');
+  
   const [isAdmin, setIsAdmin] = useState(false);
   const [isClub, setIsClub] = useState(false);
 
@@ -62,7 +64,7 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: isLogin ? <LayoutComponent /> : <HomePage setIsLogin={setIsLogin} />,
+      element: isLogin ? <LayoutComponent /> : <HomePage setIsLogin={setIsLogin} setUser={setUser} />,
       children: [
         {
           path: "/",
@@ -86,7 +88,7 @@ function App() {
         },
         {
           path: "/profile",
-          element: <Profile />
+          element: <Profile user={user} />
         },
         {
           path: "/create-display-event",
@@ -108,7 +110,7 @@ function App() {
     },
     {
       path: "/signin",
-      element: <Signin setIsLogin={setIsLogin} />
+      element: <Signin setIsLogin={setIsLogin} setUser={setUser} />
     },
     {
       path: "*",
@@ -121,7 +123,7 @@ function App() {
       <div className="h-[100vh] w-[100vw]">
         <div className='md:block hidden'>
           <div className="sticky top-0 overflow-hidden bg-white" >
-            <Header />
+            <Header user={user}/>
           </div>
           <div className="flex">
             <div className='fixed'>
@@ -133,7 +135,7 @@ function App() {
           </div>
         </div>
         <div className='md:hidden'>
-          <Header />
+          <Header user={user}/>
           <Sidebar setIsLogin={setIsLogin} isAdmin={isAdmin} isClub={isClub} />
           <div>
             <Outlet />

@@ -92,6 +92,7 @@ const Sidebar = ({ setIsLogin, isAdmin, isClub }: Props) => {
         const auth = getAuth();
         signOut(auth).then(() => {
             localStorage.removeItem("firebaseUser");
+            localStorage.removeItem("authToken");
             setIsLogin(false)
         }).catch((error) => {
             console.log(error)
@@ -161,7 +162,7 @@ const Sidebar = ({ setIsLogin, isAdmin, isClub }: Props) => {
                         </div>
                     }
                     <div className="p-4 ">
-                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer"  onClick={signOutUser}>
+                        <button className="flex items-center  pr-4 pl-4 pt-3 pb-3 gap-2 hover:bg-[#e1e5ea] rounded-xl bg-transparent w-full cursor-pointer" onClick={signOutUser}>
                             <GoSignOut />
                             Sign Out
                         </button>

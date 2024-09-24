@@ -3,9 +3,10 @@ import ClubCards from "../components/ClubCards";
 
 interface Club {
     logo_url: string;
-    name: string;
     description: string;
+    name: string;
     president: string;
+    club_id: string;
 }
 
 const Clubs = () => {
@@ -14,8 +15,16 @@ const Clubs = () => {
     useEffect(() => {
         const clubData = async () => {
             try {
+                const token = localStorage.getItem('authToken');
+                const headers: HeadersInit = {};
+                if (token) {
+                    headers['Authorization'] = token;
+                }
                 const url = `${import.meta.env.VITE_API_URL}/clubs`
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers
+                });
                 const data = await response.json();
                 setCluubs(data);
 
@@ -37,9 +46,10 @@ const Clubs = () => {
                 {clubs.map((e) => {
                     return (
                         <ClubCards
+                            key={e.club_id}
                             description={e.description}
                             title={e.name}
-                            value={e.name}
+                            value={e.club_id}
                         />
                     )
                 })}

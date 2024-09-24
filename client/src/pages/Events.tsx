@@ -18,8 +18,16 @@ const Events = () => {
     useEffect(() => {
         const data = async () => {
             try {
+                const token = localStorage.getItem('authToken');
+                const headers: HeadersInit = {};
+                if (token) {
+                    headers['Authorization'] = token;
+                }
                 const url = `${import.meta.env.VITE_API_URL}/events`
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers
+                });
                 const data = await response.json();
                 setEvents(data)
 
@@ -41,6 +49,7 @@ const Events = () => {
                 {events.map((e) => {
                     return (
                         <EventCards
+                            key={e.id}
                             clubName={e.clubName}
                             typeOfEvent={e.typeOfEvent}
                             mainTitle={e.mainTitle}

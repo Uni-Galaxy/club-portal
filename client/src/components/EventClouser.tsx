@@ -41,8 +41,16 @@ const EventClouser = () => {
         const data = async () => {
             setIsLoding(true)
             try {
+                const token = localStorage.getItem('authToken');
+                const headers: HeadersInit = {};
+                if (token) {
+                    headers['Authorization'] = token;
+                }
                 const url = `${import.meta.env.VITE_API_URL}/events`
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers
+                });
                 const data = await response.json();
                 setEvents(data)
             } catch (err) {

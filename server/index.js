@@ -8,6 +8,7 @@ import clubsRouters from "./routes/clubs.js";
 import "./config/passportConfig.js";
 import eventRouters from "./routes/events.js";
 import userRouters from "./routes/user.js";
+import checkRouters from "./routes/Check.js";
 
 dotenv.config();
 
@@ -31,7 +32,8 @@ app.get("/api", (req, res) => {
 app.use("/auth", googleAuthRouter);
 app.use("/api/clubs", clubsRouters);
 app.use("/api/events", eventRouters);
-app.use("/api/users", userRouters)
+app.use("/api/users", userRouters);
+app.use("/api/check", checkRouters);
 
 // Start server
 const PORT = process.env.PORT || 5000;

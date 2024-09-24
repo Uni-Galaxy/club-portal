@@ -1,13 +1,12 @@
 import jwt from "jsonwebtoken";
 
-const authenticateJWT = (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];  // Get token from the Authorization header
+const isAuthorize = (req, res, next) => {
+    const token = req.headers['authorization'];
 
     if (!token) {
         return res.status(401).json({ message: "Access Denied: No Token Provided!" });
     }
 
-    // Verify token
     jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
             return res.status(403).json({ message: "Invalid Token" });
@@ -18,4 +17,4 @@ const authenticateJWT = (req, res, next) => {
     });
 };
 
-export default authenticateJWT;
+export default isAuthorize;

@@ -40,8 +40,16 @@ const ClubClouser = () => {
         const clubData = async () => {
             setIsLoding(true)
             try {
+                const token = localStorage.getItem('authToken');
+                const headers: HeadersInit = {};
+                if (token) {
+                    headers['Authorization'] = token;
+                }
                 const url = `${import.meta.env.VITE_API_URL}/clubs`
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers
+                });
                 const data = await response.json();
                 setClubs(data);
             } catch (err) {
@@ -74,7 +82,7 @@ const ClubClouser = () => {
                         color="#4fa94d"
                         width="100"
                         visible={true}
-                        // ariaLabel="falling-circles-loading"
+                    // ariaLabel="falling-circles-loading"
                     />
                     <h1 className="">Loding clubs </h1>
                 </div>

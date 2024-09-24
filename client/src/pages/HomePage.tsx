@@ -1,30 +1,48 @@
 import { Link } from "react-router-dom"
 import CoverImg from "../assets/ru_cover.jpeg";
 import { useEffect, useState } from 'react';
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { DNA } from 'react-loader-spinner';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
     setIsLogin: (item: boolean) => void
+    setUser: (item: string) => void
 }
 
-const HomePage = ({ setIsLogin }: Props) => {
+const HomePage = ({ setIsLogin, setUser }: Props) => {
 
     const [isLoading, setIsLoading] = useState(false)
     const [email, setEmail] = useState("")
 
     useEffect(() => {
         setIsLoading(true)
-        if (localStorage.getItem("firebaseUser") != null) {
-            const auth = getAuth()
-            if (auth != null) {
-                onAuthStateChanged(auth, () => {
-                    setIsLogin(true)
-                    setIsLoading(false)
-                })
+        if (localStorage.getItem("authToken") != null) {
+            const token = localStorage.getItem("authToken")
+            const headers: HeadersInit = {};
+            if (token) {
+                headers['Authorization'] = token;
             }
+            fetch(`${import.meta.env.VITE_API_URL}/check`, {
+                method: 'GET',
+                headers
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Token is valid') {
+                        console.log('Token verified:', data.decoded);
+                        setUser(data.decoded.google_id)
+                        setIsLogin(true);
+                    } else {
+                        console.error('Token is invalid:', data);
+                        setIsLogin(false);
+                        localStorage.removeItem('authToken');
+                    }
+                })
+                .catch(error => {
+                    console.error("Error fetching check status:", error);
+                    setIsLogin(false);
+                });
         } else {
             setIsLoading(false)
         }

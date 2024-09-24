@@ -28,7 +28,7 @@ const MyCalendar: React.FC = () => {
     const [events, setEvents] = useState<Event[]>();
 
     function parseDuration(duration: string): number {
-        const timeParts = duration.match(/(\d+)(h|m)/g); 
+        const timeParts = duration.match(/(\d+)(h|m)/g);
         let milliseconds = 0;
 
         timeParts?.forEach(part => {
@@ -46,8 +46,16 @@ const MyCalendar: React.FC = () => {
     useEffect(() => {
         const getData = async () => {
             try {
+                const token = localStorage.getItem('authToken');
+                const headers: HeadersInit = {};
+                if (token) {
+                    headers['Authorization'] = token;
+                }
                 const url = `${import.meta.env.VITE_API_URL}/events`
-                const response = await fetch(url);
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers
+                });
                 const data = await response.json();
                 setEvents(data);
             } catch (err) {
@@ -59,11 +67,11 @@ const MyCalendar: React.FC = () => {
     }, [])
 
     const processEventsData: {
-        title: string; 
+        title: string;
         start: Date;
         end: Date;
     }[] = []
-    
+
     if (events) events.forEach((e) => {
         processEventsData.push({
             title: e.mainTitle,
