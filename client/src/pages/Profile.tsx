@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { FallingLines } from "react-loader-spinner";
 
 interface User {
     google_id: string;
@@ -23,6 +24,7 @@ interface Props {
 
 const Profile = ({ user }: Props) => {
     const [userData, setuserData] = useState<User>();
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const userData = async () => {
@@ -39,16 +41,25 @@ const Profile = ({ user }: Props) => {
                 });
                 const data = await response.json();
                 setuserData(data)
+                setLoading(false)
 
             } catch (err) {
                 console.log(err);
+                setLoading(false)
             }
         }
 
         userData()
     }, [])
 
-    return (
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center">
+                        <FallingLines color="#4fa94d" width="100" visible={true} />
+                        <h1 className="">Loading Profile Info</h1>
+                    </div>
+        )
+    } else {return (
         <div className="w-screen md:w-[calc(100vw-207px)] h-[calc(100vh-56px)] flex flex-col  items-center p-4 ">
             <div className="w-full bg-[#f6f7f9] rounded-[6px] p-3">
                 <h1 className="text-slate-700 text-3xl font-bold">Profile</h1>
@@ -87,7 +98,7 @@ const Profile = ({ user }: Props) => {
                 </div>
             </div>
         </div>
-    )
+    )}
 }
 
 export default Profile

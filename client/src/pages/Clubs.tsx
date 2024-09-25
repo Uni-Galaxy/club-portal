@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ClubCards from "../components/ClubCards";
+import { FallingLines } from "react-loader-spinner";
 
 interface Club {
     logo_url: string;
@@ -11,8 +12,10 @@ interface Club {
 
 const Clubs = () => {
     const [clubs, setCluubs] = useState<Club[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+
         const clubData = async () => {
             try {
                 const token = localStorage.getItem('authToken');
@@ -27,9 +30,11 @@ const Clubs = () => {
                 });
                 const data = await response.json();
                 setCluubs(data);
+                setLoading(false);
 
             } catch (err) {
                 console.log(err);
+                setLoading(false)
             }
         }
 
@@ -43,16 +48,27 @@ const Clubs = () => {
                 <h1 className="text-slate-700 text-3xl font-bold">Clubs</h1>
             </div>
             <div className=" flex p-3 gap-3 flex-wrap justify-center">
-                {clubs.map((e) => {
-                    return (
-                        <ClubCards
-                            key={e.club_id}
-                            description={e.description}
-                            title={e.name}
-                            value={e.club_id}
+                {loading ? (
+                    <div className="flex items-center justify-center">
+                        <FallingLines
+                            color="#4fa94d"
+                            width="100"
+                            visible={true}
                         />
-                    )
-                })}
+                        <h1 className="">Loding clubs </h1>
+                    </div>
+                ) : (
+                    clubs.map((e) => {
+                        return (
+                            <ClubCards
+                                key={e.club_id}
+                                description={e.description}
+                                title={e.name}
+                                value={e.club_id}
+                            />
+                        );
+                    })
+                )}
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import EventCards from "../components/EventCards";
+import { FallingLines } from "react-loader-spinner";
 
 interface Event {
     clubName: string;
@@ -14,6 +15,7 @@ interface Event {
 
 const Events = () => {
     const [events, setEvents] = useState<Event[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const data = async () => {
@@ -30,9 +32,11 @@ const Events = () => {
                 });
                 const data = await response.json();
                 setEvents(data)
+                setLoading(false)
 
             } catch (err) {
                 console.log(err);
+                setLoading(false)
             }
         }
 
@@ -46,22 +50,31 @@ const Events = () => {
                 <h1 className="text-slate-700 text-3xl font-bold">Events</h1>
             </div>
             <div className=" flex p-3 gap-3 flex-wrap justify-center">
-                {events.map((e) => {
-                    return (
-                        <EventCards
-                            key={e.id}
-                            clubName={e.clubName}
-                            typeOfEvent={e.typeOfEvent}
-                            mainTitle={e.mainTitle}
-                            secondTitle={e.secondTitle}
-                            venue={e.venue}
-                            eventDate={e.eventDate}
-                            eventTime={e.eventTime}
-                            _id={e.id}
-                            value={e.id}
-                        />
+                {loading ? (
+                    <div className="flex items-center justify-center">
+                        <FallingLines color="#4fa94d" width="100" visible={true} />
+                        <h1 className="">Loading Events</h1>
+                    </div>
+                ) : (
+                    events.length > 0 ? (
+                        events.map((e) => (
+                            <EventCards
+                                key={e.id}
+                                clubName={e.clubName}
+                                typeOfEvent={e.typeOfEvent}
+                                mainTitle={e.mainTitle}
+                                secondTitle={e.secondTitle}
+                                venue={e.venue}
+                                eventDate={e.eventDate}
+                                eventTime={e.eventTime}
+                                _id={e.id}
+                                value={e.id}
+                            />
+                        ))
+                    ) : (
+                        <h2>No events available</h2>
                     )
-                })}
+                )}
             </div>
         </div>
     )

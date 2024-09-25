@@ -30,6 +30,7 @@ interface Props {
 const Header = ({ user }: Props) => {
     const messaging = getMessaging();
     const router = useNavigate();
+    const [userData, setuserData] = useState<User>();
 
     const requestPermission = async () => {
         const permission = await Notification.requestPermission()
@@ -45,8 +46,6 @@ const Header = ({ user }: Props) => {
             })
         }
     }
-
-    const [userData, setuserData] = useState<User>();
 
     useEffect(() => {
         const userData = async () => {
@@ -76,13 +75,17 @@ const Header = ({ user }: Props) => {
         requestPermission();
     }, [])
 
+    const logoClick = () => {
+        router('/')
+    }
+
     return (
         <div className="w-full h-14 flex items-center justify-between border-b-[1px] border-[#e1e5ea] pt-[6px] pb-[6px] pr-3 pl-3">
             {/* Left content */}
-            <div className="hidden md:block">
+            <div className="hidden md:block" onClick={logoClick}>
                 <img className="h-14" src={full_Logo} alt="University Logo" />
             </div>
-            <div className="md:hidden flex items-center">
+            <div className="md:hidden flex items-center" onClick={logoClick}>
                 <img className="h-10" src={small_Logo} alt="University Logo" />
             </div>
             {/* Right content */}

@@ -57,9 +57,11 @@ const HomePage = ({ setIsLogin, setUser }: Props) => {
     const handleNewsletterSubmit = () => {
         if (email.trim() === "") {
             toast.error("Email address cannot be empty!", {
+                theme: "light"
             });
         } else if (!validateEmail(email)) {
             toast.error("Please enter a valid email address!", {
+                theme: "light"
             });
         } else {
             // Simulate newsletter sign-up logic
