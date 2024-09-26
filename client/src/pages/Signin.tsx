@@ -28,7 +28,6 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
             .then(response => response.json())
             .then(data => {
                 if (data.message === 'Token is valid') {
-                    console.log('Token verified:', data.decoded);
                     localStorage.setItem('authToken', token);
                     setUser(data.decoded.google_id)
                     setIsLogin(true);
@@ -50,7 +49,8 @@ const Signin = ({ setIsLogin, setUser }: Props) => {
     const handleGoogleLogin = async () => {
         try {
             // Redirect to the backend Google Auth route
-            window.location.href = `https://club-portal.onrender.com/auth/google`;
+            // window.location.href = `https://club-portal.onrender.com/auth/google`;   //Production
+            window.location.href = `http://localhost:3001/auth/google`;    //Developement
         } catch (error) {
             console.error(error);
             toast.error("Google login failed", {

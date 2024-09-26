@@ -9,15 +9,25 @@ import "./config/passportConfig.js";
 import eventRouters from "./routes/events.js";
 import userRouters from "./routes/user.js";
 import checkRouters from "./routes/Check.js";
+import isAuthorize from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+//Developemnent
 app.use(cors({
-    origin: 'https://club.yashlunawat.com',  // Frontend URL
+    origin: 'http://localhost:5173',  // Frontend URL
     credentials: true  // Allow cookies and other credentials
 }));
+
+// Production
+// app.use(cors({
+//     origin: 'https://club.yashlunawat.com',  // Frontend URL
+//     credentials: true  // Allow cookies and other credentials
+// }));
+
 app.use(morgan('dev'));
 
 // Initialize Passport
@@ -29,10 +39,10 @@ app.get("/api", (req, res) => {
 });
 
 // Routes
-app.use("/auth", googleAuthRouter);
-app.use("/api/clubs", clubsRouters);
-app.use("/api/events", eventRouters);
-app.use("/api/users", userRouters);
+app.use("/auth",  googleAuthRouter);
+app.use("/api/clubs", isAuthorize, clubsRouters);
+app.use("/api/events", isAuthorize, eventRouters);
+app.use("/api/users", isAuthorize, userRouters);
 app.use("/api/check", checkRouters);
 
 // Start server

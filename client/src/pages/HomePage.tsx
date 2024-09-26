@@ -30,7 +30,6 @@ const HomePage = ({ setIsLogin, setUser }: Props) => {
                 .then(response => response.json())
                 .then(data => {
                     if (data.message === 'Token is valid') {
-                        console.log('Token verified:', data.decoded);
                         setUser(data.decoded.google_id)
                         setIsLogin(true);
                     } else {

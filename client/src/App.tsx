@@ -25,7 +25,7 @@ function App() {
 
   const [isLogin, setIsLogin] = useState(false);
   const [user, setUser] = useState('');
-  
+
   const [isAdmin, setIsAdmin] = useState(false);
   const [isClub, setIsClub] = useState(false);
 
@@ -45,6 +45,34 @@ function App() {
       }
     })
   }, [])
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const token = localStorage.getItem('authToken');
+        const headers: HeadersInit = {};
+        if (token) {
+          headers['Authorization'] = token;
+        }
+        const url = `${import.meta.env.VITE_API_URL}/check/access`
+        const response = await fetch(url, {
+          method: 'GET',
+          headers
+        });
+        const data = await response.json();
+        if (data.role == "CLUB") {
+          setIsClub(true)
+        }
+        if (data.role == "ADMIN") {
+          setIsAdmin(true)
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    getData();
+  }, [isLogin])
 
   const firebaseConfig = {
     apiKey: "AIzaSyDdb6ULHl6_83bxI5tc1IrL27pw0I2NyXM",
@@ -123,7 +151,7 @@ function App() {
       <div className="h-[100vh] w-[100vw]">
         <div className='md:block hidden'>
           <div className="sticky top-0 overflow-hidden bg-white" >
-            <Header user={user}/>
+            <Header user={user} />
           </div>
           <div className="flex">
             <div className='fixed'>
@@ -135,7 +163,7 @@ function App() {
           </div>
         </div>
         <div className='md:hidden'>
-          <Header user={user}/>
+          <Header user={user} />
           <Sidebar setIsLogin={setIsLogin} isAdmin={isAdmin} isClub={isClub} />
           <div>
             <Outlet />

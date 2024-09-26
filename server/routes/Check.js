@@ -1,9 +1,10 @@
 import express from "express";
-import { checkStatus } from "../controllers/check.js";
+import { checkAccess, checkStatus } from "../controllers/check.js";
 import isAuthorize from "../middleware/authMiddleware.js";
 
 const checkRouters = express.Router();
 
-checkRouters.get("/", isAuthorize, checkStatus);
+checkRouters.get("/",  checkStatus);
+checkRouters.get("/access", isAuthorize, checkAccess)
 
 export default checkRouters;
