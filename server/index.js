@@ -17,16 +17,16 @@ const app = express();
 app.use(express.json());
 
 //Developemnent
-app.use(cors({
-    origin: 'http://localhost:5173',  // Frontend URL
-    credentials: true  // Allow cookies and other credentials
-}));
-
-// Production
 // app.use(cors({
-//     origin: 'https://club.yashlunawat.com',  // Frontend URL
+//     origin: 'http://localhost:5173',  // Frontend URL
 //     credentials: true  // Allow cookies and other credentials
 // }));
+
+// Production
+app.use(cors({
+    origin: 'https://club.yashlunawat.com',  // Frontend URL
+    credentials: true  // Allow cookies and other credentials
+}));
 
 app.use(morgan('dev'));
 
