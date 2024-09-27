@@ -9,7 +9,6 @@ import { ImCross } from "react-icons/im";
 import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { IoMdChatboxes } from "react-icons/io";
-import { getAuth, signOut } from "firebase/auth";
 import { IoCreateOutline } from "react-icons/io5";
 
 const generalNav = [
@@ -52,15 +51,10 @@ const ClubsNav = [
         path: "/",
     },
     {
-        name: "Create Display Event",
+        name: "Create Event",
         icon: <IoCreateOutline size={20} />,
-        path: "/create-display-event",
+        path: "/creatingEvent",
     },
-    {
-        name: "Create Calender Event",
-        icon: <IoCreateOutline size={20} />,
-        path: "/create-calender-event",
-    }
 ]
 
 const AdminNav = [
@@ -89,14 +83,8 @@ const Sidebar = ({ setIsLogin, isClub, isAdmin }: Props) => {
     })
 
     const signOutUser = () => {
-        const auth = getAuth();
-        signOut(auth).then(() => {
-            localStorage.removeItem("firebaseUser");
-            localStorage.removeItem("authToken");
-            setIsLogin(false)
-        }).catch((error) => {
-            console.log(error)
-        });
+        localStorage.removeItem("authToken");
+        setIsLogin(false);
     }
 
     return (

@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import jwt from "jsonwebtoken";
 
 const prisma = new PrismaClient();
 
@@ -43,6 +44,14 @@ export const getEventById = async (req, res) => {
 
 // Use for /events || create new event
 export const createEvent = async (req, res) => {
+    const token = req.headers['authorization']
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+    const { google_id } = user
+    const clubData = prisma.club.findFirst({
+        where: { club_account_id: google_id }
+    })
+    console.log(clubData);
+
     try {
         const { banner, clubName, description, eventDate, eventDuration, eventTime, mainTitle, secondTitle, typeOfEvent, venue, clubId } = req.body;
 

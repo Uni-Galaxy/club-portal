@@ -1,9 +1,7 @@
 import full_Logo from "../assets/Colour01.png";
 import small_Logo from "../assets/Colour01 copy.png";
 import { IoMdNotificationsOutline } from "react-icons/io";
-import { getToken, getMessaging } from "firebase/messaging";
 import { useEffect, useState } from "react";
-import { toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 interface User {
@@ -28,24 +26,8 @@ interface Props {
 }
 
 const Header = ({ user }: Props) => {
-    const messaging = getMessaging();
     const router = useNavigate();
     const [userData, setuserData] = useState<User>();
-
-    const requestPermission = async () => {
-        const permission = await Notification.requestPermission()
-        if (permission === 'granted') {
-            toast.success("Notification Enable", {
-                theme: "light"
-            })
-            await getToken(messaging, { vapidKey: 'BN0KnW-O5Ul6YYNYJbylMtVbx3DgNhGP-S08PGHne6ZHCxjY1APtrxxbSqBUnU7sDr1kUaEA3sJaQY5qhgoM9Bk' })
-        } else if (permission == 'denied') {
-            alert('Permission denied');
-            toast.error("Notification Disable", {
-                theme: "light"
-            })
-        }
-    }
 
     useEffect(() => {
         const userData = async () => {
@@ -69,10 +51,6 @@ const Header = ({ user }: Props) => {
         }
 
         userData()
-    }, [])
-
-    useEffect(() => {
-        requestPermission();
     }, [])
 
     const logoClick = () => {

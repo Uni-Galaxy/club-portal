@@ -39,7 +39,7 @@ app.get("/api", (req, res) => {
 });
 
 // Routes
-app.use("/auth",  googleAuthRouter);
+app.use("/auth", googleAuthRouter);
 app.use("/api/clubs", isAuthorize, clubsRouters);
 app.use("/api/events", isAuthorize, eventRouters);
 app.use("/api/users", isAuthorize, userRouters);

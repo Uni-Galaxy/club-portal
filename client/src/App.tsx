@@ -19,6 +19,7 @@ import { getDatabase, ref, get, child } from "firebase/database";
 import CreateCalenderEvent from './pages/CreateCalenderEvent';
 import Event from './pages/Event';
 import Club from './pages/Club';
+import CreateEvent from './pages/createEvent';
 
 
 function App() {
@@ -133,6 +134,10 @@ function App() {
         {
           path: "/club/:name",
           element: <Club />
+        },
+        {
+          path: "/creatingEvent",
+          element: isClub ? <CreateEvent /> : <Navigate to="/error" />
         }
       ]
     },
