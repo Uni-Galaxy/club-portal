@@ -16,15 +16,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 
-//Developemnent
-// app.use(cors({
-//     origin: 'http://localhost:5173',  // Frontend URL
-//     credentials: true  // Allow cookies and other credentials
-// }));
-
-// Production
 app.use(cors({
-    origin: 'https://club.yashlunawat.com',  // Frontend URL
+    origin: `${process.env.FRONTEND_URL}`,  // Frontend URL
     credentials: true  // Allow cookies and other credentials
 }));
 
