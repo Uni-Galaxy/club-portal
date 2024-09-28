@@ -17,9 +17,21 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: `${process.env.FRONTEND_URL}`,  // Frontend URL
+    origin: true,  // Accept requests from any origin
     credentials: true  // Allow cookies and other credentials
 }));
+
+
+// app.use(cors({
+//     origin: `${process.env.FRONTEND_URL}`,  // Frontend URL
+//     credentials: true  // Allow cookies and other credentials
+// }));
+
+// app.use(cors({
+//     origin: `http://localhost:5173`,  // Frontend URL
+//     credentials: true  // Allow cookies and other credentials
+// }));
+
 
 app.use(morgan('dev'));
 
