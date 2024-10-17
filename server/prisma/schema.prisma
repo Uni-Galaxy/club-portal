@@ -8,15 +8,16 @@ datasource db {
 }
 
 model User {
-  google_id           String   @id @unique
-  email               String   @unique
+  google_id           String       @id @unique
+  email               String       @unique
   first_name          String
   last_name           String
   profile_picture_url String?
-  role                Role     @default(USER)
-  account_created_at  DateTime @default(now())
-  lastlogin_at        DateTime @default(now()) @updatedAt
-  club                Club?    @relation("UserClubRelation") // Relation to Club model
+  role                Role         @default(USER)
+  account_created_at  DateTime     @default(now())
+  lastlogin_at        DateTime     @default(now()) @updatedAt
+  club                Club?        @relation("UserClubRelation")
+  enrollments         Enrollment[] @relation("UserEnrollmentRelation")
 }
 
 enum Role {
@@ -26,7 +27,7 @@ enum Role {
 }
 
 model Club {
-  club_id             Int      @id @default(autoincrement())
+  club_id             Int          @id @default(autoincrement())
   name                String
   description         String?
   logo_url            String?
@@ -35,18 +36,18 @@ model Club {
   president_email     String
   president_phone     String
   membership_form_url String?
-  accepting_members   Boolean  @default(true)
+  accepting_members   Boolean      @default(true)
   website_url         String?
-  created_at          DateTime @default(now())
-  updated_at          DateTime @default(now()) @updatedAt
+  created_at          DateTime     @default(now())
+  updated_at          DateTime     @default(now()) @updatedAt
   events              Event[]
-  club_account_id     String   @unique 
-  clubAccount         User     @relation(fields: [club_account_id], references: [google_id], name: "UserClubRelation") 
+  enrollments         Enrollment[] @relation("ClubEnrollmentRelation")
+  club_account_id     String       @unique
+  clubAccount         User         @relation(fields: [club_account_id], references: [google_id], name: "UserClubRelation")
 }
 
-
 model Event {
-  id             String   @id @default(cuid()) 
+  id             String   @id @default(cuid())
   banner         String
   clubName       String
   description    String
@@ -57,8 +58,17 @@ model Event {
   secondTitle    String
   typeOfEvent    String
   venue          String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-  club           Club?   @relation(fields: [clubId], references: [club_id])
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  club           Club?     @relation(fields: [clubId], references: [club_id])
   clubId         Int?
+}
+
+model Enrollment {
+  enrollment_id   Int      @id @default(autoincrement())
+  user            User     @relation(fields: [google_id], references: [google_id], name: "UserEnrollmentRelation")
+  google_id         String
+  club            Club     @relation(fields: [club_id], references: [club_id], name: "ClubEnrollmentRelation")
+  club_id         Int
+  createdAt       DateTime @default(now())
 }

@@ -32,16 +32,6 @@ const Club = () => {
     const clubName = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const db = getDatabase();
-    //     const dbRef = ref(db);
-    //     get(child(dbRef, `/clubsData/${clubName}`)).then((snapshot) => {
-    //         if (snapshot.exists()) {
-    //             setClubData(snapshot.val());
-    //         }
-    //     });
-    // }, [clubName]);
-
     useEffect(() => {
         const clubData = async () => {
             try {

@@ -47,17 +47,16 @@ export const createEvent = async (req, res) => {
     const token = req.headers['authorization']
     const user = jwt.verify(token, process.env.JWT_SECRET);
     const { google_id } = user
-    const clubData = prisma.club.findFirst({
+    const { name, club_id } = await prisma.club.findUnique({
         where: { club_account_id: google_id }
     })
-    console.log(clubData);
+
+    console.log("req body", req.body)
 
     try {
-        const { banner, clubName, description, eventDate, eventDuration, eventTime, mainTitle, secondTitle, typeOfEvent, venue, clubId } = req.body;
+        const { banner, description, eventDate, eventDuration, eventTime, mainTitle, secondTitle, typeOfEvent, venue } = req.body;
 
-        console.log(eventDate);
-
-        if (!mainTitle || !clubName || !eventDate || !eventTime || !typeOfEvent) {
+        if (!mainTitle || !name || !eventDate || !eventTime || !typeOfEvent) {
             return res.status(400).json({ error: "Required fields are missing" });
         }
 
@@ -75,7 +74,7 @@ export const createEvent = async (req, res) => {
         const newEvent = await prisma.event.create({
             data: {
                 banner,
-                clubName,
+                clubName: name,
                 description,
                 eventDate,
                 eventDuration,
@@ -84,7 +83,7 @@ export const createEvent = async (req, res) => {
                 secondTitle,
                 typeOfEvent,
                 venue,
-                clubId
+                clubId: club_id
             }
         });
 

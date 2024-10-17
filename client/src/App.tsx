@@ -1,8 +1,6 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider, Outlet, Navigate } from 'react-router-dom';
 import Signin from './pages/Signin';
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { useState, useEffect } from 'react';
 import HomePage from './pages/HomePage';
 import Home from './pages/Home';
@@ -14,12 +12,12 @@ import Calendar from './pages/Calendar';
 import Events from './pages/Events';
 import Profile from './pages/Profile';
 import Chat from './pages/Chat';
-import CreateDisplayEvent from './pages/CreateDisplayEvent';
-import { getDatabase, ref, get, child } from "firebase/database";
-import CreateCalenderEvent from './pages/CreateCalenderEvent';
 import Event from './pages/Event';
 import Club from './pages/Club';
 import CreateEvent from './pages/createEvent';
+import ClubProfile from './pages/clubProfile';
+// @ts-ignore
+import ClubProfileEdit from './pages/ClubProfileEdit.jsx';
 
 
 function App() {
@@ -29,23 +27,6 @@ function App() {
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [isClub, setIsClub] = useState(false);
-
-  useEffect(() => {
-    const db = getDatabase();
-    const dbRef = ref(db);
-    // Checking that is it a Admin id or Not
-    get(child(dbRef, `/checkIsAdmin`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        setIsAdmin(true);
-      }
-    })
-    // Checking that is it a Club id or Not
-    get(child(dbRef, `/checkIsClub`)).then((snapshot) => {
-      if (snapshot.exists()) {
-        setIsClub(true);
-      }
-    })
-  }, [])
 
   useEffect(() => {
     const getData = async () => {
@@ -74,21 +55,6 @@ function App() {
 
     getData();
   }, [isLogin])
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDdb6ULHl6_83bxI5tc1IrL27pw0I2NyXM",
-    authDomain: "club-portal-a8713.firebaseapp.com",
-    projectId: "club-portal-a8713",
-    storageBucket: "club-portal-a8713.appspot.com",
-    messagingSenderId: "171986663262",
-    appId: "1:171986663262:web:f08375ec8baccffd0b81cf",
-    measurementId: "G-DP3SGJ0V4Q",
-    databaseURL: "https://club-portal-a8713-default-rtdb.asia-southeast1.firebasedatabase.app/",
-  };
-
-  const app = initializeApp(firebaseConfig);
-  getAnalytics(app);
-
 
   const router = createBrowserRouter([
     {
@@ -120,14 +86,6 @@ function App() {
           element: <Profile user={user} />
         },
         {
-          path: "/create-display-event",
-          element: isClub ? <CreateDisplayEvent /> : <Navigate to="/error" />
-        },
-        {
-          path: "/create-Calender-event",
-          element: isClub ? <CreateCalenderEvent /> : <Navigate to="/error" />
-        },
-        {
           path: "/event/:id",
           element: <Event />
         },
@@ -138,6 +96,14 @@ function App() {
         {
           path: "/creatingEvent",
           element: isClub ? <CreateEvent /> : <Navigate to="/error" />
+        },
+        {
+          path: "/clubProfile",
+          element: isClub ? <ClubProfile /> : <Navigate to="/error" />
+        },
+        {
+          path: "/clubProfile/edit",
+          element: isClub ? <ClubProfileEdit /> : <Navigate to="/error" />
         }
       ]
     },

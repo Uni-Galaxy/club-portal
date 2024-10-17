@@ -31,10 +31,13 @@ const CreateEvent = () => {
             const headers: HeadersInit = {};
             if (token) {
                 headers['Authorization'] = token;
+                headers['Content-Type'] = "application/json";
             }
-            console.log(headers);
+
+            console.log(eventData);
+
             const response = await fetch(`${import.meta.env.VITE_API_URL}/events`, {
-                method: 'POST',
+                method: "POST",
                 headers,
                 body: JSON.stringify(eventData)
             });
@@ -77,10 +80,21 @@ const CreateEvent = () => {
                             name="banner"
                             value={eventData.banner}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
+                        <div className='flex p-1 justify-center content-center items-center'>
+                            <p>Get <span className='text-xl font-bold'>Direct link</span> for IMG from -= </p>
+                            <button
+                                type="button"
+                                className="w-fit bg-indigo-600 text-white px-2 py-1 rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 "
+                                onClick={() => window.open('https://postimages.org/')}
+                            >
+                                Get IMG Link
+                            </button>
+                        </div>
                     </div>
+
 
                     {/* Main Title */}
                     <div>
@@ -90,7 +104,7 @@ const CreateEvent = () => {
                             name="mainTitle"
                             value={eventData.mainTitle}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div>
@@ -103,7 +117,7 @@ const CreateEvent = () => {
                             name="secondTitle"
                             value={eventData.secondTitle}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                         />
                     </div>
 
@@ -115,7 +129,7 @@ const CreateEvent = () => {
                             name="clubName"
                             value={eventData.clubName}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div> */}
@@ -128,7 +142,7 @@ const CreateEvent = () => {
                             name="eventDate"
                             value={eventData.eventDate}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div>
@@ -141,7 +155,7 @@ const CreateEvent = () => {
                             name="eventTime"
                             value={eventData.eventTime}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div>
@@ -154,7 +168,7 @@ const CreateEvent = () => {
                             name="eventDuration"
                             value={eventData.eventDuration}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div>
@@ -167,7 +181,7 @@ const CreateEvent = () => {
                             name="typeOfEvent"
                             value={eventData.typeOfEvent}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div>
@@ -181,7 +195,7 @@ const CreateEvent = () => {
                             name="venue"
                             value={eventData.venue}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md  border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         />
                     </div>
@@ -193,7 +207,7 @@ const CreateEvent = () => {
                             name="description"
                             value={eventData.description}
                             onChange={handleChange}
-                            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
+                            className="mt-1 block w-full rounded-md border-gray-300 border-[1px]  shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-3"
                             required
                         ></textarea>
                     </div>

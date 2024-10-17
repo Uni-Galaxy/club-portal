@@ -1,13 +1,14 @@
 import { Link } from 'react-router-dom';
-import img from '../assets/Colour01 copy.png'
+// import img from '../assets/Colour01 copy.png'
 
 interface Club {
     description: string;
     title: string;
     value: string;
+    image: string;
 }
 
-const ClubCards = ({ description, title, value }: Club) => {
+const ClubCards = ({ description, title, value, image }: Club) => {
 
 
     return (
@@ -19,7 +20,7 @@ const ClubCards = ({ description, title, value }: Club) => {
             <div className="flex items-center gap-4 p-4 h-full">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary">
                     <img
-                        src={img}
+                        src={image}
                         width="48"
                         height="48"
                         alt="Club Logo"

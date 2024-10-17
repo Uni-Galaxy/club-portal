@@ -65,6 +65,7 @@ const Clubs = () => {
                                 description={e.description}
                                 title={e.name}
                                 value={e.club_id}
+                                image={e.logo_url}
                             />
                         );
                     })

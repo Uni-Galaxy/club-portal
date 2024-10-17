@@ -46,9 +46,9 @@ const generalNav = [
 
 const ClubsNav = [
     {
-        name: "Clubs",
-        icon: <IoMdHome size={20} />,
-        path: "/",
+        name: "Club Profile",
+        icon: <VscAccount size={20} />,
+        path: "/clubProfile",
     },
     {
         name: "Create Event",
