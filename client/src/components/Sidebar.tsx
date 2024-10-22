@@ -10,6 +10,7 @@ import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { IoMdChatboxes } from "react-icons/io";
 import { IoCreateOutline } from "react-icons/io5";
+import { GoPersonAdd } from "react-icons/go";
 
 const generalNav = [
     {
@@ -55,6 +56,11 @@ const ClubsNav = [
         icon: <IoCreateOutline size={20} />,
         path: "/creatingEvent",
     },
+    {
+        name: "Add Member",
+        icon: <GoPersonAdd size={20} />,
+        path: "/addMembers",
+    }
 ]
 
 const AdminNav = [

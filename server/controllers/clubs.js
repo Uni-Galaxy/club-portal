@@ -156,3 +156,42 @@ export const changeClubData = async (req, res) => {
         await prisma.$disconnect();
     }
 }
+
+export const getClubMembers = async (req, res) => {
+    const { google_id } = req.user;
+    try {
+        const { club_id } = await prisma.club.findUnique({
+            where: { club_account_id: google_id }
+        });
+
+        const enrollments = await prisma.enrollment.findMany({
+            where: {
+                club_id: Number(club_id),
+            },
+            include: {
+                user: {
+                    select: {
+                        google_id: true,
+                        email: true,
+                        first_name: true,
+                        last_name: true,
+                        profile_picture_url: true,
+                    },
+                },
+            },
+        });
+
+        const clubMembers = enrollments.map(enrollment => enrollment.user);
+
+        res.status(200).json({
+            success: true,
+            data: clubMembers,
+        });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Something went wrong while fetching club members',
+        });
+    }
+};

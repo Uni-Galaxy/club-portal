@@ -15,15 +15,15 @@ export const googleLogout = (req, res) => {
 
 // storing user in database and sending them 
 export const googleAuthCallbackHandler = async (req, res) => {
-    const userData = {
-        google_id: req.user._json.sub,
-        email: req.user._json.email,
-        first_name: req.user._json.given_name,
-        last_name: req.user._json.family_name,
-        profile_picture_url: req.user._json.picture
-    };
-
     try {
+        const userData = {
+            google_id: req.user._json.sub,
+            email: req.user._json.email,
+            first_name: req.user._json.given_name,
+            last_name: req.user._json.family_name ? req.user._json.family_name : "",
+            profile_picture_url: req.user._json.picture
+        };
+
         let user = await prisma.user.findUnique({
             where: { google_id: userData.google_id }
         });
@@ -53,7 +53,7 @@ export const googleAuthCallbackHandler = async (req, res) => {
 
         // Redirect user to frontend with the token
         // const frontendRedirectUrl = `http://localhost:5173/signin?token=${token}`; //Developement
-        
+
         const frontendRedirectUrl = `${process.env.FRONTEND_URL}/signin?token=${token}`; //Developement
         res.redirect(frontendRedirectUrl);
 

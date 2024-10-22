@@ -18,6 +18,7 @@ import CreateEvent from './pages/createEvent';
 import ClubProfile from './pages/clubProfile';
 // @ts-ignore
 import ClubProfileEdit from './pages/ClubProfileEdit.jsx';
+import AddMembers from './pages/AddMembers.js';
 
 
 function App() {
@@ -104,6 +105,10 @@ function App() {
         {
           path: "/clubProfile/edit",
           element: isClub ? <ClubProfileEdit /> : <Navigate to="/error" />
+        },
+        {
+          path: "/addMembers",
+          element: isClub ? <AddMembers /> : <Navigate to="/error" />
         }
       ]
     },
