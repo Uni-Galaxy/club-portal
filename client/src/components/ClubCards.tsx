@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-// import img from '../assets/Colour01 copy.png'
 
 interface Club {
     description: string;
@@ -9,11 +8,14 @@ interface Club {
 }
 
 const ClubCards = ({ description, title, value, image }: Club) => {
+    const maxLength = 100;
 
+
+    const displayedDescription = description.length > maxLength ? description.slice(0, maxLength) + '...' : description
 
     return (
         <div
-            className="rounded-lg border bg-card text-card-foreground shadow-sm h-[120px] "
+            className="rounded-lg border bg-card text-card-foreground shadow-sm h-[120px]"
             data-v0-t="card"
             key={value}
         >
@@ -31,7 +33,7 @@ const ClubCards = ({ description, title, value, image }: Club) => {
                 <div className="flex-1 w-[max-content] max-w-[220px]">
                     <h3 className="text-lg font-semibold">{title}</h3>
                     <p className="text-sm text-muted-foreground">
-                        {description}
+                        {displayedDescription}
                     </p>
                 </div>
                 <Link
@@ -42,7 +44,7 @@ const ClubCards = ({ description, title, value, image }: Club) => {
                 </Link>
             </div>
         </div>
-    )
+    );
 }
 
-export default ClubCards
+export default ClubCards;
