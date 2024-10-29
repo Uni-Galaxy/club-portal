@@ -11,6 +11,7 @@ import { VscAccount } from "react-icons/vsc";
 import { IoMdChatboxes } from "react-icons/io";
 import { IoCreateOutline } from "react-icons/io5";
 import { GoPersonAdd } from "react-icons/go";
+import { BsCalendar2Event } from "react-icons/bs";
 
 const generalNav = [
     {
@@ -57,9 +58,14 @@ const ClubsNav = [
         path: "/creatingEvent",
     },
     {
-        name: "Add Member",
+        name: "Member",
         icon: <GoPersonAdd size={20} />,
         path: "/addMembers",
+    },
+    {
+        name: "Manage Events",
+        icon: <BsCalendar2Event size={20} />,
+        path: "/clubEvents",
     }
 ]
 

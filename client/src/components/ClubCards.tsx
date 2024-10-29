@@ -8,7 +8,7 @@ interface Club {
 }
 
 const ClubCards = ({ description, title, value, image }: Club) => {
-    const maxLength = 100;
+    const maxLength = 80;
 
 
     const displayedDescription = description.length > maxLength ? description.slice(0, maxLength) + '...' : description

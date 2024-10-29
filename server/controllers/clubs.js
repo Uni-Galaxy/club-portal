@@ -56,7 +56,7 @@ export const createClub = async (req, res) => {
             website_url
         } = req.body;
 
-        if (!name || !club_email || !president || !president_email || !president_phone) {
+        if (!name || !club_email || !president || !president_email) {
             return res.status(400).json({ error: "Required fields are missing" });
         }
 
@@ -98,6 +98,7 @@ export const createClub = async (req, res) => {
     }
 };
 
+// Use for /clubs/profile || give - club profile of club
 export const getProfile = async (req, res) => {
     try {
         const { google_id } = req.user;
@@ -123,6 +124,7 @@ export const getProfile = async (req, res) => {
     }
 };
 
+// Use for /clubs || chnaging the club profile data 
 export const changeClubData = async (req, res) => {
     const { club_id } = req.body
     try {
@@ -157,6 +159,7 @@ export const changeClubData = async (req, res) => {
     }
 }
 
+// Use for /clubs/members || geting the list of all the members of the club
 export const getClubMembers = async (req, res) => {
     const { google_id } = req.user;
     try {
@@ -195,3 +198,19 @@ export const getClubMembers = async (req, res) => {
         });
     }
 };
+
+// 
+export const addMembers = async (req, res) => {
+    const { google_id } = req.user;
+    try {
+        const { club_id } = await prisma.club.findUnique({
+            where: { club_account_id: google_id }
+        });
+
+    } catch (error) {
+        console.error("Error fetching club:", error.message);
+        res.status(500).json({ error: "An error occurred while fetching the club.", message: error.message });
+    } finally {
+        await prisma.$disconnect();
+    }
+}

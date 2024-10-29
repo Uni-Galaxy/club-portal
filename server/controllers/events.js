@@ -96,3 +96,83 @@ export const createEvent = async (req, res) => {
     }
 };
 
+// Use for /events/:id || changing info of a event
+export const changeEventData = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const event = await prisma.event.findUnique({
+            where: { id: id }
+        })
+
+        if (!event) {
+            return res.status(404).json({ error: "Event not Found" });
+        }
+
+        delete req.body.updatedAt
+        delete req.body.createdAt
+        delete req.body.id
+
+        const updatedEvent = await prisma.event.update({
+            where: { id: id },
+            data: req.body
+        })
+
+        res.status(200).json({ massage: "Event Updated successfully", data: updatedEvent })
+
+    } catch (error) {
+        console.error("Error fetching Event:", error.message);
+        res.status(500).json({ error: "An error occurred while fetching the Event.", message: error.message });
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+// Use for /events || delete the event from db
+export const deleteEvent = async (req, res) => {
+    try {
+        const { id } = req.params
+
+        const event = await prisma.event.findUnique({
+            where: { id: id }
+        })
+
+        if (!event) {
+            return res.status(404).json({ error: "Event not Found" });
+        }
+
+        const deletedEvent = await prisma.event.delete({
+            where: { id: id },
+        })
+
+        res.status(200).json({ massage: "Event Deleted successfully", data: deletedEvent })
+
+    } catch (error) {
+        console.error("Error Delecting Event:", error.message);
+        res.status(500).json({ error: "An error occurred while Delecting a Event.", message: error.message });
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+// Use for /events/club || get event of a specific club
+export const getClubEvent = async (req, res) => {
+    const { google_id } = req.user;
+    try {
+        const { club_id } = await prisma.club.findUnique({
+            where: { club_account_id: google_id }
+        });
+
+        const clubEvents = await prisma.event.findMany({
+            where: { clubId: club_id },
+        })
+
+        res.status(200).json(clubEvents)
+
+    } catch (error) {
+        console.error("Error geting Club Event:", error.message);
+        res.status(500).json({ error: "An error occurred while getting Clubs Event.", message: error.message });
+    } finally {
+        await prisma.$disconnect();
+    }
+}

@@ -19,6 +19,9 @@ import ClubProfile from './pages/clubProfile';
 // @ts-ignore
 import ClubProfileEdit from './pages/ClubProfileEdit.jsx';
 import AddMembers from './pages/AddMembers.js';
+import ClubEvents from './pages/ClubEvents.js';
+import EditClubEvent from './pages/EditClubEvent.js';
+import UserSelection from './pages/UserSelection.js';
 
 
 function App() {
@@ -109,6 +112,18 @@ function App() {
         {
           path: "/addMembers",
           element: isClub ? <AddMembers /> : <Navigate to="/error" />
+        },
+        {
+          path: "/clubEvents",
+          element: isClub ? <ClubEvents /> : <Navigate to="/error" />
+        },
+        {
+          path: "/ClubEventEdit/:id",
+          element: isClub ? <EditClubEvent /> : <Navigate to="/error" />
+        },
+        {
+          path: "/user-selection",
+          element: isClub ? <UserSelection /> : <Navigate to="/error" />
         }
       ]
     },
