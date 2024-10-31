@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserSelection = () => {
     const [allUsers, setAllUsers] = useState<any[]>([]);
     const [selectedUsers, setSelectedUsers] = useState<any[]>([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [allUsersLoading, setAllUsersLoading] = useState(true);
+    const navation = useNavigate()
 
     useEffect(() => {
         const fetchAllUsers = async () => {
@@ -55,9 +59,14 @@ const UserSelection = () => {
             });
 
             if (response.ok) {
-                alert("Member(s) added successfully!");
+                navation("/addMembers")
+                toast.success("Member added Successfully", {
+                    theme: "light"
+                });
             } else {
-                throw new Error("Failed to add member(s)");
+                toast.error("Fail to add Member", {
+                    theme: "light"
+                });
             }
         } catch (err) {
             console.log(err);

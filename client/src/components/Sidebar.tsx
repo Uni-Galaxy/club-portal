@@ -9,7 +9,6 @@ import { ImCross } from "react-icons/im";
 import { useState } from "react";
 import { VscAccount } from "react-icons/vsc";
 import { IoMdChatboxes } from "react-icons/io";
-import { IoCreateOutline } from "react-icons/io5";
 import { GoPersonAdd } from "react-icons/go";
 import { BsCalendar2Event } from "react-icons/bs";
 
@@ -51,11 +50,6 @@ const ClubsNav = [
         name: "Club Profile",
         icon: <VscAccount size={20} />,
         path: "/clubProfile",
-    },
-    {
-        name: "Create Event",
-        icon: <IoCreateOutline size={20} />,
-        path: "/creatingEvent",
     },
     {
         name: "Member",

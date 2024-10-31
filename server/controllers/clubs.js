@@ -206,10 +206,63 @@ export const addMembers = async (req, res) => {
         const { club_id } = await prisma.club.findUnique({
             where: { club_account_id: google_id }
         });
+        const list = req.body.userIds
+
+        list.forEach(async (e) => {
+            const enrollment = await prisma.enrollment.findMany({
+                where: {
+                    club_id: Number(club_id),
+                    google_id: e
+                }
+            })
+
+            if (enrollment.length === 0) {
+                await prisma.enrollment.create({
+                    data: {
+                        club_id: Number(club_id),
+                        google_id: e
+                    }
+                })
+            }
+        })
+
+        res.status(200).json({ massage: "Member Added successfully" })
 
     } catch (error) {
         console.error("Error fetching club:", error.message);
         res.status(500).json({ error: "An error occurred while fetching the club.", message: error.message });
+    } finally {
+        await prisma.$disconnect();
+    }
+}
+
+export const deleteMember = async (req, res) => {
+    try {
+        const { google_id } = req.user;
+        const { id } = req.params;
+        const { club_id } = await prisma.club.findUnique({
+            where: { club_account_id: google_id }
+        });
+        const enrollment = await prisma.enrollment.findMany({
+            where: {
+                club_id: Number(club_id),
+                google_id: id
+            }
+        })
+
+        if (enrollment) {
+            await prisma.enrollment.delete({
+                where: {
+                    enrollment_id: enrollment[0].enrollment_id
+                }
+            })
+            res.status(200).json({ massage: "Member deleted successfully" })
+        } else {
+            res.status(404).json({ massage: "Member not found" })
+        }
+    } catch (error) {
+        console.error("Error deleting Member:", error.message);
+        res.status(500).json({ error: "An error occurred while deleting Member.", message: error.message });
     } finally {
         await prisma.$disconnect();
     }

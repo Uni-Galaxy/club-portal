@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FallingLines } from "react-loader-spinner";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddMembers = () => {
     const [members, setMembers] = useState<any[]>([]);
@@ -30,24 +33,28 @@ const AddMembers = () => {
         fetchMembers();
     }, []);
 
-    const handleDeleteMember = async (memberId: any) => {
+    const handleDeleteMember = async (google_id: any) => {
         try {
             const token = localStorage.getItem("authToken");
             const headers: HeadersInit = {};
             if (token) {
                 headers['Authorization'] = token;
             }
-            const url = `${import.meta.env.VITE_API_URL}/clubs/members/${memberId}`;
+            const url = `${import.meta.env.VITE_API_URL}/clubs/members/${google_id}`;
             const response = await fetch(url, {
                 method: "DELETE",
                 headers,
             });
 
             if (response.ok) {
-                setMembers(members.filter((member) => member.id !== memberId));
-                alert("Member removed successfully!");
+                setMembers(members.filter((member) => member.id !== google_id));
+                toast.success("Member removed Successfully", {
+                    theme: "light"
+                });
             } else {
-                throw new Error("Failed to delete member");
+                toast.error("Failed to delete member", {
+                    theme: "light"
+                });
             }
         } catch (err) {
             console.log(err);
@@ -59,7 +66,12 @@ const AddMembers = () => {
     };
 
     if (loading) {
-        return <div className="text-center text-xl font-bold">Loading...</div>;
+        return (
+            <div className="flex items-center justify-center">
+                <FallingLines color="#4fa94d" width="100" visible={true} />
+                <h1>Loading Members</h1>
+            </div>
+        )
     }
 
     return (
@@ -91,7 +103,7 @@ const AddMembers = () => {
                         </thead>
                         <tbody>
                             {members.map((member) => (
-                                <tr key={member.id} className="hover:bg-gray-100">
+                                <tr key={member.google_id} className="hover:bg-gray-100">
                                     <td className="px-4 py-2 border ">
                                         <img
                                             src={member.profile_picture_url}
@@ -103,7 +115,7 @@ const AddMembers = () => {
                                     <td className="px-4 py-2 border">{member.email}</td>
                                     <td className="px-4 py-2 border">
                                         <button
-                                            onClick={() => handleDeleteMember(member.id)}
+                                            onClick={() => handleDeleteMember(member.google_id)}
                                             className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition duration-200"
                                         >
                                             Delete
