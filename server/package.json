@@ -1,11 +1,12 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
     "migrate": "npx prisma generate",
     "updatedb": "npx prisma migrate dev --name init"
   },
