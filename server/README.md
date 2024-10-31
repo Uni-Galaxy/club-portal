@@ -60,7 +60,7 @@ To start the server, run:
    npm start
    ```
 
-The API will be available at `http://localhost:<PORT>` (default port: 5000).
+The API will be available at `http://localhost:<PORT>` (default port: 3001).
 
 ## Database
 
@@ -78,21 +78,30 @@ This backend uses MySQL for database management with Sequelize ORM for defining 
 
 - **GET /api/clubs** - Retrieves a list of all clubs.
 - **POST /api/clubs** - Adds a new club to the database.
+- **GET /api/clubs/profile** - Retrieves a Profile of Club from which res is coming.
 - **GET /api/clubs/:id** - Retrieves details of a specific club by ID.
-- **PUT /api/clubs/:id** - Updates the details of a specific club.
-- **DELETE /api/clubs/:id** - Deletes a club by ID.
+- **PATCH /api/clubs** - Updates the details of a specific club from which res is coming.
+- **GET /api/clubs/members/** - Retrieves details of a members of specific club.
+- **POST /api/clubs/members/:id** - Adds a new member to the club.
+- **DELETE /api/clubs/members/:id** - Deletes a member from club.
 
 ### Event Endpoints
 
-- **GET /api/events** - Retrieves a list of all events.
-- **POST /api/events** - Creates a new event.
+- **GET /api/events/** - Retrieves a list of all events.
+- **GET /api/events/club** - Retrieves a list of events specific to a club.
 - **GET /api/events/:id** - Retrieves details of a specific event by ID.
-- **PUT /api/events/:id** - Updates event details.
+- **POST /api/events/** - Creates a new event.
+- **PATCH /api/events/:id** - Updates event details.
 - **DELETE /api/events/:id** - Deletes an event by ID.
 
 ### Authentication Endpoint
 
-- **POST /api/auth/google** - Google login endpoint for user authentication.
+- **POST /auth/google** - Google login endpoint for user authentication.
+
+### User Endpoint
+
+- **GET /api/users** - Retrieves a list of all Users.
+- **GET /api/users/:id** - Retrieves details of a specific user by ID.
 
 ## Middlewares
 
