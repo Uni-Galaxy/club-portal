@@ -22,6 +22,7 @@ import AddMembers from './pages/AddMembers.js';
 import ClubEvents from './pages/ClubEvents.js';
 import EditClubEvent from './pages/EditClubEvent.js';
 import UserSelection from './pages/UserSelection.js';
+import CreateClub from './pages/CreateClub.js';
 
 
 function App() {
@@ -124,6 +125,11 @@ function App() {
         {
           path: "/user-selection",
           element: isClub ? <UserSelection /> : <Navigate to="/error" />
+        },
+        {
+          path: "/create-club",
+          // element: isAdmin ? <CreateClub /> : <Navigate to="/error" />
+          element: <CreateClub />
         }
       ]
     },
